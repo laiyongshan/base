@@ -4,9 +4,14 @@ import android.app.ActivityManager;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.ccj.base.AppManager;
 import com.ccj.base.base.BaseApplication;
+import com.ccj.base.utils.TLog;
 import com.tencent.bugly.Bugly;
+import com.tencent.bugly.BuglyStrategy;
 import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.beta.UpgradeInfo;
+import com.tencent.bugly.beta.ui.UILifecycleListener;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.yeohe.kiosk.ui.main.MainActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -20,10 +25,15 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * ARouter 这里必须在 这里初始化, 在 base里面初始化 无效,奇怪
@@ -147,6 +157,12 @@ public class AppApplication extends BaseApplication {
          */
         Beta.initDelay = 1 * 1000;
 
+        Beta.upgradeCheckPeriod =60 * 1000;
+
+//        Beta.enableNotification = true;
+
+        Beta.autoDownloadOnWifi = true;//设置Wifi下自动下载
+
         /**
          * 设置通知栏大图标，largeIconId为项目中的图片资源；
          */
@@ -179,7 +195,7 @@ public class AppApplication extends BaseApplication {
          * 只允许在MainActivity上显示更新弹窗，其他activity上不显示弹窗;
          * 不设置会默认所有activity都可以显示弹窗;
          */
-        Beta.canShowUpgradeActs.add(MainActivity.class);
+//        Beta.canShowUpgradeActs.add(MainActivity.class);
 
 
         /**
@@ -212,10 +228,10 @@ public class AppApplication extends BaseApplication {
          *  view - 升级对话框的根布局视图，可通过这个对象查找指定view控件
          *  upgradeInfo - 升级信息
          */
-     /*  Beta.upgradeDialogLifecycleListener = new UILifecycleListener<UpgradeInfo>() {
+      Beta.upgradeDialogLifecycleListener = new UILifecycleListener<UpgradeInfo>() {
             @Override
             public void onCreate(Context context, View view, UpgradeInfo upgradeInfo) {
-                Log.d(TAG, "onCreate");
+                TLog.logI("onCreate");
                 // 注：可通过这个回调方式获取布局的控件，如果设置了id，可通过findViewById方式获取，如果设置了tag，可以通过findViewWithTag，具体参考下面例子:
 
                 // 通过id方式获取控件，并更改imageview图片
@@ -230,38 +246,50 @@ public class AppApplication extends BaseApplication {
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+//                        Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+                    }
+                });
+
+                Button beta_cancel_button=(Button)view.findViewWithTag("beta_cancel_button");
+                beta_cancel_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AppManager.getAppManager().AppExit(getApplicationContext());
+                        TLog.logI( "OnClickListener");
                     }
                 });
             }
 
+
+
             @Override
             public void onStart(Context context, View view, UpgradeInfo upgradeInfo) {
-                Log.d(TAG, "onStart");
+//                TLog.logI(TAG, "onStart");
             }
 
             @Override
             public void onResume(Context context, View view, UpgradeInfo upgradeInfo) {
-                Log.d(TAG, "onResume");
+//                Log.d(TAG, "onResume");
             }
 
             @Override
             public void onPause(Context context, View view, UpgradeInfo upgradeInfo) {
-                Log.d(TAG, "onPause");
+//                Log.d(TAG, "onPause");
             }
 
             @Override
             public void onStop(Context context, View view, UpgradeInfo upgradeInfo) {
-                Log.d(TAG, "onStop");
+//                Log.d(TAG, "onStop");
             }
 
             @Override
             public void onDestroy(Context context, View view, UpgradeInfo upgradeInfo) {
-                Log.d(TAG, "onDestory");
+//                Log.d(TAG, "onDestory");
             }
-        };*/
+        };
+
 
         /**
          * 自定义Activity参考，通过回调接口来跳转到你自定义的Actiivty中。
@@ -289,14 +317,14 @@ public class AppApplication extends BaseApplication {
          * 参数2：appId
          * 参数3：是否开启debug
          */
-        Bugly.init(getApplicationContext(),APP_ID, true);
+        Bugly.init(getApplicationContext(),APP_ID, false);
 
         /**
          * 如果想自定义策略，按照如下方式设置
          */
 
         /***** Bugly高级设置 *****/
-        //        BuglyStrategy strategy = new BuglyStrategy();
+                BuglyStrategy strategy = new BuglyStrategy();
         /**
          * 设置app渠道号
          */

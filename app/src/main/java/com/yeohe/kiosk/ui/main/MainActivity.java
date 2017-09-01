@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         //绑定组件
         ButterKnife.bind(this);
 
+        Beta.checkUpgrade();
 
     }
 
@@ -42,8 +43,7 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         switch (view.getId()){
             case R.id.test_btn:
 //                CrashReport.testJavaCrash();
-//                Beta.checkUpgrade();
-                AppApplication.showLongToast(ScreenSizeUtil.getScreenHeight(MainActivity.this)+"");
+//                AppApplication.showLongToast(ScreenSizeUtil.getScreenHeight(MainActivity.this)+"\n"+ScreenSizeUtil.getScreenWidth(MainActivity.this));
                 break;
         }
     }
