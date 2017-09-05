@@ -284,3 +284,6 @@
  -keep public class com.alibaba.android.arouter.routes.**{*;}
 
 
+-keep class cn.pedant.SweetAlert.Rotate3dAnimation {
+    public <init>(...);
+ }

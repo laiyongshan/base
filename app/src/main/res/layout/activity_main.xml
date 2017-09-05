@@ -1,16 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/shape"
+    tools:context="com.yeohe.kiosk.ui.main.MainActivity">
 
-    <Button
-        android:id="@+id/test_btn"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="测试"
-        />
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_left_pading"
+        android:paddingRight="@dimen/activity_right_pading"
+        android:paddingTop="@dimen/activity_top_pading"
+        android:paddingBottom="@dimen/activity_bottom_pading"
+        android:orientation="vertical"
+        android:layout_above="@+id/bottom_info_bar"
+        >
 
-</LinearLayout>
+
+        <ImageView
+            android:id="@+id/logo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/ic_launcher_round"
+            />
+        
+        
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/lucency"
+            android:layout_gravity="right"
+            android:text="登 录"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:drawableTop="@mipmap/ic_launcher_round"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/logo_iv"
+            />
+
+        <!--<GridView-->
+            <!--android:id="@+id/apps_gv"-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:numColumns="1"-->
+            <!--android:scrollbars="none"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_below="@+id/login_btn"-->
+            <!--/>-->
+
+            <ScrollView
+                android:id="@+id/fun_sv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:scrollbars="none"
+                android:layout_centerInParent="true"
+
+                >
+
+            <LinearLayout
+                android:id="@+id/fun_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_below="@+id/login_btn"
+                >
+
+                <Button
+                    android:id="@+id/query_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="违章查询"
+                    android:textSize="30sp"
+                    android:padding="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/annual_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="车辆年检"
+                    android:textSize="30sp"
+                    android:layout_marginTop="20dp"
+                    android:padding="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/order_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="订单信息"
+                    android:textSize="30sp"
+                    android:padding="15dp"
+                    />
+            </LinearLayout>
+
+            </ScrollView>
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/bottom_info_bar"
+        layout="@layout/bottom_info_bar"
+        />
+</RelativeLayout>

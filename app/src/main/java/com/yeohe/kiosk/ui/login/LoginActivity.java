@@ -32,7 +32,6 @@ import static com.ccj.base.Constants.RESULT_FROM_LOGIN;
 @Route(path = RouterConstants.LOGIN_MOUDLE_ACTIVITY)
 public class LoginActivity extends BaseActivity<LoginContract.Presenter> implements LoginContract.View {
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +47,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
 
     }
 
-    @Override
-    public void navigateToRegister() {
 
-    }
 
 
 

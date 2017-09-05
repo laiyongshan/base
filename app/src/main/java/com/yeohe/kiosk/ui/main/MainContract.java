@@ -9,16 +9,19 @@ import com.ccj.base.base.BaseView;
 
 public interface MainContract {
 
-    interface View extends BaseView{
-
+    interface View extends BaseView {
+        void showProgress();
+        void hideProgress();
+        void showError(String error);
     }
 
-    interface Presenter extends BasePresenter{
-
+    interface Presenter extends BasePresenter {
+        void onDestroy();
     }
 
     interface Model{
 
     }
+
 
 }

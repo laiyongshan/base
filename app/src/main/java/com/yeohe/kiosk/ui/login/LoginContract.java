@@ -18,7 +18,6 @@ public interface LoginContract {
         void hideProgress();
         void showError(String error);
         void navigateToMain();
-        void navigateToRegister();
     }
 
     interface Presenter extends BasePresenter {
@@ -30,7 +29,6 @@ public interface LoginContract {
         void saveUserInfo(User user);
         void saveLoginState(Boolean isLogin);
         void saveRememberPass(User user);
-
     }
 
 }

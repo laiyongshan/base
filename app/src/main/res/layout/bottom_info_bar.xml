@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:layout_gravity="bottom"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/activity_left_pading"
+    android:paddingRight="@dimen/activity_right_pading"
+    android:paddingTop="@dimen/activity_top_pading"
+    android:paddingBottom="@dimen/activity_bottom_pading"
+    android:layout_alignParentBottom="true"
+    >
+
+
+    <ImageView
+        android:id="@+id/logo_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_gravity="left|center_vertical"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/company_name"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:gravity="right|center_vertical"
+        android:drawableRight="@mipmap/ic_launcher_round"
+        android:textSize="15sp"
+        android:lines="1"
+        android:layout_toRightOf="@+id/logo_iv"
+        android:paddingLeft="5dp"
+
+        />
+
+</RelativeLayout>

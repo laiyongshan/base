@@ -44,7 +44,7 @@ public class PermissionUtils {
         if(flag){
             AlertDialog.Builder builder = new AlertDialog.Builder(aty);
             builder.setTitle("权限申请")
-                    .setMessage("请允许建管通的权限申请，否则无法正常使用工地现场、报告取证等功能")
+                    .setMessage("请允许权限申请，否则无法正常使用相关功能")
                     .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
