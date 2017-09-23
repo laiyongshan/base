@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical|center_horizontal"
     android:background="@drawable/dialog_default_style"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:minWidth="260dp"
+    >
 
     <TextView
         android:id="@+id/dialog_base_title_tv"
@@ -41,9 +43,10 @@
             android:id="@+id/dialog_base_confirm_btn"
             android:layout_height="50dp"
             android:layout_width="match_parent"
-            android:text="确定"
+            android:text="我知道了"
             android:textColor="#000000"
             android:background="@drawable/dialog_bottom_btn_bg"
+            android:gravity="center"
             />
 
     </LinearLayout>

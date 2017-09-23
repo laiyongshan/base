@@ -17,7 +17,10 @@ public interface LoginContract {
         void showProgress();
         void hideProgress();
         void showError(String error);
-        void navigateToMain();
+        void navigateToMain();//跳转到首页
+
+        void showSucessDialog();//登录成功弹框
+        void showFaileDialog(String err);//登录失败提示框
     }
 
     interface Presenter extends BasePresenter {

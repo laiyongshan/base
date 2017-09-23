@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_login_green"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/bg_layout"
+        layout="@layout/bg_layout" />
+
+    <RelativeLayout
+        android:id="@+id/main_body_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_info_bar"
+        android:layout_below="@+id/bg_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_bottom_margin"
+        android:gravity="center">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:id="@+id/weixin_pay_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/lucency"
+                        android:src="@drawable/weixinzhifu2" />
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#909090" />
+
+
+                    <ImageView
+                        android:id="@+id/ali_pay_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/lucency"
+                        android:src="@drawable/zhifubao2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/pay_money_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:drawableLeft="@drawable/shoukuan"
+                        android:drawablePadding="10dp"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="35sp" />
+
+
+                    <ImageView
+                        android:id="@+id/pay_qr_code_img"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_below="@+id/pay_money_tv"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:padding="10dp"
+                        android:scaleType="fitCenter" />
+
+                    <TextView
+                        android:id="@+id/type_tips_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pay_qr_code_img"
+                        android:gravity="center_horizontal"
+                        android:padding="20dp"
+                        android:text="扫一扫，向我付款"
+                         />
+
+                    <TextView
+                        android:id="@+id/expired_time_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/scan_pay_bg"
+                        android:gravity="center"
+                        android:text="二维码有效期为5分钟，过期后请刷新重试"
+                        android:textColor="@color/white" />
+
+                    <ImageView
+                        android:id="@+id/scan_pay_bg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:padding="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/scan_pay_bg"
+                        android:layout_marginTop="40dp"
+                        />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+    <include
+        android:id="@+id/bottom_info_bar"
+        layout="@layout/bottom_info_bar" />
+
+
+</RelativeLayout>

@@ -36,6 +36,8 @@
     <color name="item_click_bg_color">#dddddd</color>
     <color name="tans">#00000000</color>
 
+    <color name="text_hint">#929292</color>
+
 
     <color name="tool_bar_white">@android:color/white</color>
 

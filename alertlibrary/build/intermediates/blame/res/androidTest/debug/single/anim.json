@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\modal_in.xml",
+        "source": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\modal_in.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\modal_out.xml",
+        "source": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\modal_out.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\d21688da15ba071a7c076858f63aa1d83eacc587\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\error_frame_in.xml",
+        "source": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\error_frame_in.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\error_x_in.xml",
+        "source": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\error_x_in.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\d21688da15ba071a7c076858f63aa1d83eacc587\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\d21688da15ba071a7c076858f63aa1d83eacc587\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\success_bow_roate.xml",
+        "source": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\success_bow_roate.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\d21688da15ba071a7c076858f63aa1d83eacc587\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\success_mask_layout.xml",
+        "source": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\bundles\\debug\\res\\anim\\success_mask_layout.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\d21688da15ba071a7c076858f63aa1d83eacc587\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "F:\\Kiosk\\alertlibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\d21688da15ba071a7c076858f63aa1d83eacc587\\output\\res\\anim\\abc_slide_in_top.xml"
+    }
+]

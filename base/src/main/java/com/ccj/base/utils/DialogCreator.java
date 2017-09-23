@@ -1,12 +1,15 @@
 package com.ccj.base.utils;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -67,7 +70,7 @@ public class DialogCreator {
 
     public static Dialog createBaseCustomDialog(Context context, String title, String text,
                                                 View.OnClickListener onClickListener) {
-        Dialog baseDialog = new Dialog(context, R.style.default_dialog_style);
+        final Dialog baseDialog = new Dialog(context, R.style.default_dialog_style);
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_base, null);
         baseDialog.setContentView(v);
@@ -76,7 +79,12 @@ public class DialogCreator {
         Button confirmBtn = (Button) v.findViewById(R.id.dialog_base_confirm_btn);
         titleTv.setText(title);
         textTv.setText(text);
-        confirmBtn.setOnClickListener(onClickListener);
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseDialog.dismiss();
+            }
+        });
         baseDialog.setCancelable(false);
         return baseDialog;
     }
@@ -102,8 +110,34 @@ public class DialogCreator {
         return baseDialog;
     }
 
+
+
+
     /*dialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
     dialog.show();*/
-
+//    public static Dialog createAnnualDialog(Activity activity, String url, View.OnClickListener onClickListener) {
+//        Dialog baseDialog = new Dialog(activity, R.style.dialog_fullscreen_style);
+//        LayoutInflater inflater = LayoutInflater.from(activity);
+//        View v = inflater.inflate(R.layout, null);
+//        baseDialog.setContentView(v);
+//        ImageView imageview = (ImageView) v.findViewById(R.id.imageview);
+//        ImageButton image_exit = (ImageButton) v.findViewById(R.id.image_exit);
+//        Picasso .with(activity)
+//                .load(R.drawable.loading_10)
+//                .error(R.mipmap.load_img_error)
+//                .into(imageview);
+//
+//        image_exit.setOnClickListener(onClickListener);
+//        baseDialog.setCancelable(false);
+//        Window window = baseDialog.getWindow();
+//        window.setGravity(Gravity.CENTER);  //此处可以设置dialog显示的位置
+//        window.setWindowAnimations(R.style.dialog_common);  //添加动画
+//        if(activity.getWindowManager().getDefaultDisplay().getWidth()>activity.getWindowManager().getDefaultDisplay().getHeight()){
+//            baseDialog.getWindow().setLayout((int) (0.6 * activity.getWindowManager().getDefaultDisplay().getWidth()), WindowManager.LayoutParams.WRAP_CONTENT);
+//        }else{
+//            baseDialog.getWindow().setLayout((int) (0.8 * activity.getWindowManager().getDefaultDisplay().getWidth()), WindowManager.LayoutParams.WRAP_CONTENT);
+//        }
+//        return baseDialog;
+//    }
 
 }

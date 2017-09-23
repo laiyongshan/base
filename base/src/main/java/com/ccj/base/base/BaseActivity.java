@@ -12,9 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.ccj.base.AppManager;
 import com.ccj.base.R;
 import com.ccj.base.utils.DialogCreator;
+import com.ccj.base.utils.router.RouterConstants;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -29,6 +33,7 @@ public class BaseActivity<T extends BasePresenter>
     private static final String TAG = "BaseActivity";
     public T mPresenter;
     protected Dialog progressDialog;
+
     protected Toolbar toolbar;
     protected Context mContext;
     private int fragmentIndex = 0;
@@ -75,6 +80,7 @@ public class BaseActivity<T extends BasePresenter>
 //        progressDialog.setMessage(getResources().getString(R.string.show_loading_msg));
         progressDialog= DialogCreator.createLoadingDialog(this,"Loading.....");
     }
+
 
     public void showLoading() {
         progressDialog.show();

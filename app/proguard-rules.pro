@@ -24,7 +24,7 @@
 -dontoptimize                    # 优化不优化输入的类文件
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
 
-#-keepnames class * implements java.io.Serializable #不混淆Serializable
+-keepnames class * implements java.io.Serializable #不混淆Serializable
 
 -keep class **.R$* {
  *;
@@ -202,6 +202,8 @@
 -keepattributes SourceFile,LineNumberTable
 
 
+-keep class com.yeohe.kiosk.utils.Gsonutil
+-keep public class com.yeohe.kiosk.bean.**{*;}
 
 
 
@@ -281,9 +283,48 @@
 # Router
 -keep class com.alibaba.android.arouter.facade.annotation.** {*;}
 -keep class * implements com.alibaba.android.arouter.facade.annotation.Interceptor {*;}
+-keep class * implements com.alibaba.android.arouter.facade.** {*;}
  -keep public class com.alibaba.android.arouter.routes.**{*;}
+
 
 
 -keep class cn.pedant.SweetAlert.Rotate3dAnimation {
     public <init>(...);
  }
+
+ # Gson
+ #-keepattributes Signature-keepattributes *Annotation*
+ -keep class sun.misc.Unsafe { *; }
+ -keep class com.google.gson.stream.** { *; }
+ # 使用Gson时需要配置Gson的解析对象及变量都不混淆。不然Gson会找不到变量。
+ # 将下面替换成自己的实体类
+ -keep class com.efly.flyhelper.bean.** { *; }
+
+
+#EventBus
+-keepclassmembers class ** {
+    public void onEvent*(**);
+}
+-keep class org.greenrobot.eventbus.EventBus{*;}
+-keep class org.greenrobot.eventbus.Subscribe{*;}
+-keep class com.yeohe.kiosk.utils.GsonImpl
+-keep class * implements java.io.Serializable {*;}
+-keepclassmembers class * implements java.io.Serializable {*;}
+-keep class com.yeohe.kiosk.utils.Json
+# OkHttp3
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp.** { *;}
+-keep interface com.squareup.okhttp.** { *;}
+-keep class com.squareup.okhttp3.** { *;}
+-dontwarn okio.**
+
+-keep class com.android.volley.** {*;}
+-dontwarn com.android.volley.**
+-keep interface com.android.volley.** {*;}
+
+ -keep public class * implements com.bumptech.glide.module.GlideModule
+ -keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+      **[] $VALUES;public *;}
+
+
+

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/annual_item_layout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/bottom_info_bar"
+    android:layout_below="@+id/title_tv"
+    android:layout_marginLeft="@dimen/activity_left_margin"
+    android:layout_marginRight="@dimen/activity_right_margin"
+    android:background="@drawable/round_corner_white"
+    android:gravity="center"
+
+    >
+
+    <ScrollView
+        android:id="@+id/content_sv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_centerInParent="true"
+        android:paddingTop="50dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!--证件寄回地址-->
+            <RelativeLayout
+                android:id="@+id/car_code_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/car_code_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="证件回寄："
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.flyco.roundview.RoundRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/car_code_tv"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingTop="15dp"
+                    android:textColor="#ffffff"
+                    rv:rv_backgroundColor="@color/white"
+                    rv:rv_isRadiusHalfHeight="true"
+                    rv:rv_isRippleEnable="false"
+                    rv:rv_strokeColor="#03A9F4"
+                    rv:rv_strokePressColor="#6D8FB0"
+                    rv:rv_strokeWidth="1dp"
+                    rv:rv_textPressColor="#ffffff">
+
+
+                    <com.yeohe.kiosk.widgets.ClearEditText
+                        android:id="@+id/express_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/iv_portrait"
+                        android:background="@color/lucency"
+                        android:gravity="center_vertical"
+                        android:hint="请填写所有资料寄回地址"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/text_size23"
+                        />
+
+                </com.flyco.roundview.RoundRelativeLayout>
+
+            </RelativeLayout>
+
+
+            <include layout="@layout/item_annual_credentials" />
+
+            <include layout="@layout/item_annual_express_adrss" />
+
+
+            <TextView
+                android:id="@+id/annual_price_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:gravity="right|center_vertical"
+                android:text="价格：￥"
+                android:textColor="@color/red"
+                android:textSize="25sp" />
+
+
+            <com.flyco.roundview.RoundTextView
+                android:id="@+id/add_annual_btn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:text=" 提交年检订单 "
+                android:textSize="@dimen/text_size24"
+                android:textColor="@color/white"
+                rv:rv_backgroundColor="@color/colorPrimary"
+                rv:rv_backgroundPressColor="#03A9F4"
+                rv:rv_isRadiusHalfHeight="true"
+                rv:rv_isRippleEnable="false"
+                rv:rv_strokeColor="@color/colorPrimary"
+                rv:rv_strokePressColor="#6D8FB0"
+                rv:rv_strokeWidth="1dp"
+                rv:rv_textPressColor="#ffffff"
+                android:layout_below="@+id/auth_code_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

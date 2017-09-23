@@ -1,9 +1,22 @@
 package com.yeohe.kiosk.ui.login;
 
 
-import com.ccj.base.bean.User;
-import com.ccj.base.utils.TLog;
+import android.content.Context;
 
+import com.ccj.base.bean.User;
+import com.ccj.base.utils.SharedPreferenceUtil;
+import com.ccj.base.utils.TLog;
+import com.yeohe.kiosk.bean.CarType;
+import com.yeohe.kiosk.http.URLs;
+import com.yeohe.kiosk.utils.EncryptUtil;
+import com.yeohe.kiosk.utils.GsonUtil;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Request;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -16,13 +29,51 @@ import rx.schedulers.Schedulers;
 public class LoginPresenter implements LoginContract.Presenter {
 
     private LoginContract.View loginView;
-    public LoginPresenter(LoginContract.View loginView) {
+    private Context context;
+    public LoginPresenter(Context context, LoginContract.View loginView) {
         this.loginView = loginView;
+        this.context=context;
     }
 
+
+    /*
+    * 登录
+    * */
+    HashMap map=new HashMap();
     @Override
     public void login(String username, String password) {
 
+        map.put("username",username);
+        map.put("password",password);
+
+        OkHttpUtils.post().url(URLs.LOGIN_URL).params(EncryptUtil.encrypt(map)).build().execute(new StringCallback() {
+            @Override
+            public void onBefore(Request request, int id) {
+                loginView.showProgress();
+            }
+
+            @Override
+            public void onAfter(int id) {
+                loginView.hideProgress();
+            }
+
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                e.printStackTrace();
+                TLog.logI(e.toString());
+                loginView.showError(e.toString());
+
+                loginView.showFaileDialog(e.toString());
+            }
+            @Override
+            public void onResponse(String response, int id) {
+                TLog.logI(EncryptUtil.decryptJson(response,context)+"");
+
+                SharedPreferenceUtil.getInstance().setUsername("15088132079");//设置用户名称
+                SharedPreferenceUtil.getInstance().setToken("");//设置token
+
+            }
+        });
     }
 
     @Override

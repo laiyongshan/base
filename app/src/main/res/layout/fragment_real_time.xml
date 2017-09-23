@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/commit_layout"
+            android:layout_alignParentTop="true"
+            >
+
+            <com.yeohe.kiosk.widgets.MyListView
+                android:id="@+id/realtime_illegal_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:divider="#fafafa"
+                android:dividerHeight="10dp" />
+
+        </ScrollView>
+
+        <include layout="@layout/activity_no_illegal" />
+
+
+        <RelativeLayout
+            android:id="@+id/commit_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"
+                android:shadowColor="#FFF0F0F0"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="1"
+                />
+
+            <LinearLayout
+                android:id="@+id/price_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="共计费用："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size24" />
+
+                <TextView
+                    android:id="@+id/price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="待报价"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size20" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/price_layout"
+                android:gravity="center">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="服务费："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size20" />
+
+                <TextView
+                    android:id="@+id/sevice_fee_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="待报价"
+                    android:textColor="@color/red"
+                    android:textSize="16sp" />
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="已选"
+                        android:textColor="#303030"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/count_illegal_choose_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/text_size22"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="条"
+                        android:textColor="#303030"
+                        android:textSize="16sp" />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <com.flyco.roundview.RoundTextView
+                android:id="@+id/real_commit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:padding="15dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="5dp"
+                android:text=" 提交订单 "
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                rv:rv_backgroundColor="@color/colorPrimary"
+                rv:rv_backgroundPressColor="#03A9F4"
+                rv:rv_isRadiusHalfHeight="true"
+                rv:rv_isRippleEnable="false"
+                rv:rv_strokeColor="@color/colorPrimary"
+                rv:rv_strokePressColor="#6D8FB0"
+                rv:rv_strokeWidth="1dp"
+                rv:rv_textPressColor="#ffffff" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

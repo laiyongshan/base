@@ -31,6 +31,7 @@ import android.os.Environment;
 import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -337,5 +338,6 @@ public class AppApplication extends BaseApplication {
 
         //        Bugly.init(getApplicationContext(), APP_ID, true, strategy);
     }
+
 
 }

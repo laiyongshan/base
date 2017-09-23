@@ -20,6 +20,12 @@ public class SharedPreferenceUtil {
     public final static String KEY_LOGIN = "KEY_LOGIN";
     public final static String KEY_LEVEL = "KEY_LEVEL";
     public final static String KEY_DELIVERY = "KEY_DELIVERY";
+
+
+    public final static String KEY_TOKEN="KEY_TOKEN";
+    public final static String KEY_USER_NAME="KEY_USER_NAME";
+    public final static String KEY_CAR_ID="KEY_CAR_ID";
+
     private static SharedPreferenceUtil spUtils;
     private static User spUser = null;
     private SharedPreferences sp;
@@ -63,6 +69,27 @@ public class SharedPreferenceUtil {
         return sp;
     }
 
+
+    public synchronized void setToken(String token){
+
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putString(KEY_TOKEN,token);
+        editor.commit();
+    }
+
+    //读取token值
+    public synchronized String getToken(){
+        return sp.getString(KEY_TOKEN,"");
+    }
+
+    //退出删除token值
+    public synchronized void DeleteToken(){
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putString(KEY_TOKEN,"");
+        editor.commit();
+    }
+
+
     public synchronized void putAutoLogin(Boolean AutoLogin) {
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean(KEY_AUTO, AutoLogin);
@@ -86,6 +113,8 @@ public class SharedPreferenceUtil {
         return flag;
     }
 
+
+
     public synchronized void putUser(User user) {
         SharedPreferences.Editor editor = sp.edit();
         String str = "";
@@ -103,13 +132,23 @@ public class SharedPreferenceUtil {
     //记录用户名
     public void setUsername(String username){
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("pre_username",username);
-        editor.apply();
+        editor.putString(KEY_USER_NAME,username);
+        boolean b=editor.commit();
+        TLog.logI("editor.commit()"+b);
     }
 
     //读取用户名
     public String getUsername(){
-        return sp.getString("pre_username","");
+        TLog.logI(sp.getString(KEY_USER_NAME,""));
+        return sp.getString(KEY_USER_NAME,"");
+    }
+
+
+    public synchronized boolean DeleteUser() {
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(KEY_USER_NAME, "");
+        boolean isexit=editor.commit();
+        return isexit;
     }
 
 
@@ -138,12 +177,6 @@ public class SharedPreferenceUtil {
     }
 
 
-    public synchronized void DeleteUser() {
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(KEY_NAME, "");
-        editor.commit();
-        spUser = null;
-    }
 
 //
 //    public synchronized DeliveryMessage getDeliveryMessage() {

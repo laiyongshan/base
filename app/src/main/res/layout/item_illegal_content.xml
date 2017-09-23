@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:gravity="center_vertical"
+        >
+
+        <TableRow
+            android:gravity="center_vertical"
+            >
+
+            <TextView
+                android:id="@+id/time_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lines="1"
+                android:text=""
+                android:textColor="@color/black" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_span="2"
+                >
+
+                <TextView
+                    android:id="@+id/location_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:text=""
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/count_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="200"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/latefee_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="200"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/price_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="300"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/degree_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="400"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/orderstatus_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="未处理"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:weightSum="2">
+
+
+                <CheckBox
+                    android:id="@+id/isselect_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center" />
+
+                <com.flyco.roundview.RoundTextView
+                    android:id="@+id/detail_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/auth_code_layout"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="详  情"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    rv:rv_backgroundColor="@color/orig"
+                    rv:rv_backgroundPressColor="@color/lucency"
+                    rv:rv_isRadiusHalfHeight="true"
+                    rv:rv_isRippleEnable="false"
+                    rv:rv_strokeColor="@color/lucency"
+                    rv:rv_strokePressColor="@color/lucency"
+                    rv:rv_strokeWidth="1dp"
+                    rv:rv_textPressColor="#ffffff" />
+
+            </LinearLayout>
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

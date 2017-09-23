@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="400dp"
+    android:layout_gravity="center"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:minHeight="150dp"
+    android:minWidth="300dp"
+    android:background="@drawable/round_corner_white"
+    android:maxWidth="300dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="车辆类型选择"
+        android:textColor="@color/white"
+        android:textSize="23sp" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:layout_above="@+id/dismiss_tv"
+            android:padding="10dp"
+            >
+
+            <ListView
+                android:id="@+id/car_type_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+
+        </ScrollView>
+
+</LinearLayout>

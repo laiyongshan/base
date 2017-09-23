@@ -1,58 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/shape"
+    android:background="@mipmap/bg_login_green"
     tools:context="com.yeohe.kiosk.ui.main.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_info_bar"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_bottom_pading"
         android:paddingLeft="@dimen/activity_left_pading"
         android:paddingRight="@dimen/activity_right_pading"
-        android:paddingTop="@dimen/activity_top_pading"
-        android:paddingBottom="@dimen/activity_bottom_pading"
-        android:orientation="vertical"
-        android:layout_above="@+id/bottom_info_bar"
-        >
+        android:paddingTop="@dimen/activity_top_pading">
 
 
         <ImageView
             android:id="@+id/logo_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
             android:layout_alignParentLeft="true"
-            android:src="@mipmap/ic_launcher_round"
-            />
-        
-        
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/logo" />
+
+
         <Button
             android:id="@+id/login_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/lucency"
-            android:layout_gravity="right"
-            android:text="登 录"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:drawableTop="@mipmap/ic_launcher_round"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/logo_iv"
+            android:layout_gravity="right"
+            android:background="@color/lucency"
+            android:drawableTop="@mipmap/user_login"
+            android:text="登    录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size20"
+            android:layout_marginTop="15dp"
             />
 
+
+        <com.flyco.roundview.RoundTextView
+            android:id="@+id/exit_btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:paddingTop="10dp"
+            android:singleLine="true"
+            android:text="退出登录"
+            android:textColor="@color/white"
+            rv:rv_backgroundColor="@color/colorPrimary"
+            rv:rv_cornerRadius="10dp"/>
+
         <!--<GridView-->
-            <!--android:id="@+id/apps_gv"-->
-            <!--android:layout_width="200dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:numColumns="1"-->
-            <!--android:scrollbars="none"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_centerInParent="true"-->
-            <!--android:layout_below="@+id/login_btn"-->
-            <!--/>-->
+        <!--android:id="@+id/apps_gv"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:numColumns="1"-->
+        <!--android:scrollbars="none"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_below="@+id/login_btn"-->
+        <!--/>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/login_btn"
+            android:gravity="center">
 
             <ScrollView
                 android:id="@+id/fun_sv"
@@ -60,55 +88,109 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:scrollbars="none"
-                android:layout_centerInParent="true"
 
                 >
 
-            <LinearLayout
-                android:id="@+id/fun_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_below="@+id/login_btn"
-                >
-
-                <Button
-                    android:id="@+id/query_btn"
+                <LinearLayout
+                    android:id="@+id/fun_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="违章查询"
-                    android:textSize="30sp"
-                    android:padding="15dp"
-                    />
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/login_btn"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:weightSum="3">
 
-                <Button
-                    android:id="@+id/annual_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="车辆年检"
-                    android:textSize="30sp"
-                    android:layout_marginTop="20dp"
-                    android:padding="15dp"
-                    />
+                    <!--<Button-->
+                    <!--android:id="@+id/query_btn"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="违章查询"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:padding="15dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--/>-->
 
-                <Button
-                    android:id="@+id/order_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="订单信息"
-                    android:textSize="30sp"
-                    android:padding="15dp"
-                    />
-            </LinearLayout>
+                    <com.flyco.roundview.RoundTextView
+                        android:id="@+id/query_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="违章查询"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        rv:rv_backgroundColor="#84D289"
+                        rv:rv_backgroundPressColor="@color/lucency"
+                        rv:rv_isRadiusHalfHeight="true"
+                        rv:rv_isRippleEnable="false"
+                        rv:rv_strokeColor="#F0F0F0"
+                        rv:rv_strokePressColor="#6D8FB0"
+                        rv:rv_strokeWidth="1.0dp"
+                        rv:rv_textPressColor="#ffffff"
+                        />
+
+
+                    <com.flyco.roundview.RoundTextView
+                        android:id="@+id/annual_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="车辆年检"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        rv:rv_backgroundColor="#D0E3A0"
+                        rv:rv_backgroundPressColor="@color/lucency"
+                        rv:rv_isRadiusHalfHeight="true"
+                        rv:rv_isRippleEnable="false"
+                        rv:rv_strokeColor="#F0F0F0"
+                        rv:rv_strokePressColor="#6D8FB0"
+                        rv:rv_strokeWidth="1dp"
+                        rv:rv_textPressColor="#ffffff" />
+
+                    <!--<Button-->
+                    <!--android:id="@+id/order_btn"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--android:text="订单信息"-->
+                    <!--android:textSize="30sp"-->
+                    <!--android:padding="15dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--/>-->
+
+                    <com.flyco.roundview.RoundTextView
+                        android:id="@+id/order_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="订单信息"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        rv:rv_backgroundColor="#81D0F4"
+                        rv:rv_backgroundPressColor="@color/lucency"
+                        rv:rv_isRadiusHalfHeight="true"
+                        rv:rv_isRippleEnable="false"
+                        rv:rv_strokeColor="#F0F0F0"
+                        rv:rv_strokePressColor="#6D8FB0"
+                        rv:rv_strokeWidth="1dp"
+                        rv:rv_textPressColor="#ffffff" />
+
+                </LinearLayout>
 
             </ScrollView>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
     <include
         android:id="@+id/bottom_info_bar"
-        layout="@layout/bottom_info_bar"
-        />
+        layout="@layout/bottom_info_bar" />
 </RelativeLayout>

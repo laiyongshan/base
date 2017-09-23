@@ -30,7 +30,8 @@ public class RouterUtils {
 
 
 
-    public void startActivityForResult(Activity activity,String path,int requestCode,String argKey,Object argValue) {
+
+    public static void startActivityForResult(Activity activity,String path,int requestCode,String argKey,Object argValue) {
         ARouter.getInstance().build(path).
                 withObject(argKey, argValue).
                 navigation(activity, requestCode);

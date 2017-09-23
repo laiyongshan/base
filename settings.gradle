@@ -1,1 +1,1 @@
-include ':app', ':base', ':alertLib'
+include ':app', ':base', ':loadinglib', ':alertlibrary'

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/annual_item_layout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/bottom_info_bar"
+    android:layout_below="@+id/title_tv"
+    android:layout_marginLeft="@dimen/activity_left_margin"
+    android:layout_marginRight="@dimen/activity_right_margin"
+    android:layout_marginTop="20dp"
+    android:background="@color/white"
+    android:gravity="center">
+
+
+    <ScrollView
+        android:id="@+id/content_sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <!--车牌号码-->
+            <RelativeLayout
+                android:id="@+id/car_num_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/car_num_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="车牌号码："
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.flyco.roundview.RoundRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/car_num_tv"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingTop="15dp"
+                    android:textColor="#ffffff"
+                    rv:rv_backgroundColor="@color/white"
+                    rv:rv_isRadiusHalfHeight="true"
+                    rv:rv_isRippleEnable="false"
+                    rv:rv_strokeColor="#03A9F4"
+                    rv:rv_strokePressColor="#6D8FB0"
+                    rv:rv_strokeWidth="1dp"
+                    rv:rv_textPressColor="#ffffff">
+
+                    <TextView
+                        android:id="@+id/prefix_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="6dp"
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@mipmap/number_icon"
+                        android:gravity="left|center_vertical"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size24"
+
+                        />
+
+
+                    <com.yeohe.kiosk.widgets.ClearEditText
+                        android:id="@+id/car_num_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/prefix_tv"
+                        android:background="@color/lucency"
+                        android:gravity="center_vertical"
+                        android:hint="请填写车牌号码"
+                        android:lines="1"
+                        android:text=""
+                        android:textColorHint="@color/text_hint"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size23"
+                        />
+
+                </com.flyco.roundview.RoundRelativeLayout>
+
+            </RelativeLayout>
+
+
+            <!--发动机号码-->
+            <RelativeLayout
+                android:id="@+id/car_engine_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="15dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/car_engine_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="发动机号："
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.flyco.roundview.RoundRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/car_engine_tv"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingTop="15dp"
+                    android:textColor="#ffffff"
+                    rv:rv_backgroundColor="@color/white"
+                    rv:rv_isRadiusHalfHeight="true"
+                    rv:rv_isRippleEnable="false"
+                    rv:rv_strokeColor="#03A9F4"
+                    rv:rv_strokePressColor="#6D8FB0"
+                    rv:rv_strokeWidth="1dp"
+                    rv:rv_textPressColor="#ffffff">
+
+
+                    <com.yeohe.kiosk.widgets.ClearEditText
+                        android:id="@+id/car_engine_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请填写发动机号"
+                        android:lines="1"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/iv_portrait"
+                        android:background="@color/lucency"
+                        android:gravity="center_vertical"
+                        android:text=""
+                        android:textColorHint="@color/text_hint"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size23"
+                        android:layout_toLeftOf="@+id/carengine_doubt_img"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/carengine_doubt_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:src="@mipmap/wenhao_01" />
+
+                </com.flyco.roundview.RoundRelativeLayout>
+
+            </RelativeLayout>
+
+
+            <!--车身架号码-->
+            <RelativeLayout
+                android:id="@+id/car_code_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/car_code_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="车身架号："
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.flyco.roundview.RoundRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/car_code_tv"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingTop="15dp"
+                    android:textColor="#ffffff"
+                    rv:rv_backgroundColor="@color/white"
+                    rv:rv_isRadiusHalfHeight="true"
+                    rv:rv_isRippleEnable="false"
+                    rv:rv_strokeColor="#03A9F4"
+                    rv:rv_strokePressColor="#6D8FB0"
+                    rv:rv_strokeWidth="1dp"
+                    rv:rv_textPressColor="#ffffff">
+
+
+                    <com.yeohe.kiosk.widgets.ClearEditText
+                        android:id="@+id/car_code_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/iv_portrait"
+                        android:background="@color/lucency"
+                        android:gravity="center_vertical"
+                        android:hint="请填写车身架号"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/text_size23"
+                        android:layout_toLeftOf="@+id/carcode_doubt_img"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/carcode_doubt_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:src="@mipmap/wenhao_01" />
+
+                </com.flyco.roundview.RoundRelativeLayout>
+
+            </RelativeLayout>
+
+
+            <!--车牌号码-->
+            <RelativeLayout
+                android:id="@+id/car_date_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/car_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="注册日期："
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_centerVertical="true"
+                    />
+
+                <com.flyco.roundview.RoundRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@+id/car_date_tv"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingTop="15dp"
+                    android:textColor="#ffffff"
+                    rv:rv_backgroundColor="@color/white"
+                    rv:rv_isRadiusHalfHeight="true"
+                    rv:rv_isRippleEnable="false"
+                    rv:rv_strokeColor="#03A9F4"
+                    rv:rv_strokePressColor="#6D8FB0"
+                    rv:rv_strokeWidth="1dp"
+                    rv:rv_textPressColor="#ffffff">
+
+
+                    <TextView
+                        android:id="@+id/datapicker_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="6dp"
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@mipmap/licenseplatenumber"
+                        android:gravity="left|center_vertical"
+                        android:padding="2dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:hint="请选择机动车注册日期"
+                        android:textColorHint="@color/text_hint"
+                        android:textSize="@dimen/text_size23"
+                        />
+
+                </com.flyco.roundview.RoundRelativeLayout>
+
+            </RelativeLayout>
+
+            <include
+                layout="@layout/annual_item_layout2"/>
+
+
+            <com.flyco.roundview.RoundTextView
+                android:id="@+id/next_btn1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:text=" 下一步 "
+                android:textSize="@dimen/text_size24"
+                android:textColor="@color/white"
+                rv:rv_backgroundColor="@color/colorPrimary"
+                rv:rv_backgroundPressColor="#03A9F4"
+                rv:rv_isRadiusHalfHeight="true"
+                rv:rv_isRippleEnable="false"
+                rv:rv_strokeColor="@color/colorPrimary"
+                rv:rv_strokePressColor="#6D8FB0"
+                rv:rv_strokeWidth="1dp"
+                rv:rv_textPressColor="#ffffff"
+                android:layout_below="@+id/auth_code_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

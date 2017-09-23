@@ -1,4 +1,68 @@
 <resources>
-    <string name="app_name">Kiosk</string>
+    <string name="app_name">飞狗车盟自助设备版</string>
     <string name="company_name">广州市友禾信息科技有限公司</string>
+
+    <string name="commission_title3">办理年检前，需准备以下材料快递到指定地址</string>
+    <string name="commission8">以上资料缺一不可，否则无法办理，三次无法提供全面资料，将会导致锁证。</string>
+    <string name="commission9">· 行驶证原件正副页\n· 有效交强险正本或者副本原件(注：若客户有提前购买保险，     请将新旧两张保单交强险副本原件一并寄出)\n· 有效车船税原件\n· 身份证复印件\n· 车辆登记证复印件</string>
+
+
+    <!--提交详情-->
+    <string name="illegalAdd">违章地点：</string>
+    <string name="illegalContent">违章内容：</string>
+    <string name="illegalTime">违章时间：</string>
+    <string name="nowState">当前状态：</string>
+    <string name="illegalmoney">罚款金额：</string>
+    <string name="koufen">扣分情况：</string>
+    <string name="illegalpeple">服  务  费：</string>
+    <string name="latefee">滞  纳  金：</string>
+    <string name="handleremark">处理说明：</string>
+    <string name="illegalguangbo">提交后，友车将在7个工作日内为您办理</string>
+    <string name="illegaltips">可缴费违章</string>
+    <string name="usediscount">使用优惠券</string>
+    <string name="no_illegal">没有相关类型违章。</string>
+    <string name="specia_illegal_tips">下列待报价处理违章暂无实时报价，
+        我们将在您提交订单后工作日24小时之内给出报价并有专门客服通知您，办理时长需要3个星期。</string>
+
+    <string name="user_konw">
+        一、订单说明：\n
+         1. 付款成功后请勿通过其他渠道重复处理，产生的纠纷不作退款。\n
+         2. 周期一年以内已经使用过三本证为同一台车处理后，后续需要再处理简称<u>超证</u>。\n\n
+        二、 以下情况可能会产生订单金额外的<u>补款费用</u>，届时客服会联系您商议补款相关事宜，敬请留意：\n
+                1. 车辆发生<u>超证</u>或<u>0分0罚款</u>违章\n
+                2. 车辆在机场路段违章\n
+                3. 公司车0分订单\n
+                4. 粤X Y E字母开头车牌在外省违章\n
+                5. 提交的违章与实际处理违章罚款金额不一致
+    </string>
+
+    <string name="dialog_commit_tips">未选择任何违章或违章已全部提交，用户可以到主界面的\"订单查询\"页面中查看</string>
+    <string name="dialog_wait_pay_tips">待报价订单，客服人员将在一个工作日内为您报价,报价后,用户可到订单查询的未支付页面中查看并选择支付。</string>
+
+
+    <!--ListView-->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+
+    <string name="annual_hint1">请选择省份前缀</string>
+    <string name="annual_hint2">请输入车牌号码</string>
+    <string name="annual_hint3">请输入车身架号</string>
+    <string name="annual_hint4">请输入发动机号</string>
+    <string name="annual_hint5">请选择年审日期</string>
+    <string name="annual_hint6">请输入车主姓名</string>
+    <string name="annual_hint7">请输入车主手机号码</string>
+    <string name="annual_hint8">请输入您的回寄地址</string>
+    <string name="annual_hint9">请输入车主身份证后4位</string>
+
+
 </resources>

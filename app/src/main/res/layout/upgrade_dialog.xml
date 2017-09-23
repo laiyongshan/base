@@ -20,20 +20,20 @@
             android:src="@mipmap/ic_launcher" />
         <!--通过tag设置的控件 -->
         <TextView
-            android:tag="textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="customText"/>
+            android:tag="textview"
+            android:text="customText" />
 
         <!-- 【必设】升级标题控件tag：beta_title-->
         <TextView
-            android:tag="beta_title"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:paddingLeft="10dp"
+            android:tag="beta_title"
             android:text="title"
             android:textColor="#273238"
             android:textSize="18sp" />
@@ -55,9 +55,9 @@
                 android:paddingLeft="4dp">
                 <!-- 【必设】升级信息控件tag：beta_upgrade_info-->
                 <TextView
-                    android:tag="beta_upgrade_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:tag="beta_upgrade_info"
                     android:text="info"
                     android:textColor="#757575"
                     android:textSize="14sp" />
@@ -71,9 +71,9 @@
                     android:textSize="14sp" />
                 <!-- 【必设】更新属性控件tag：beta_upgrade_feature-->
                 <TextView
-                    android:tag="beta_upgrade_feature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:tag="beta_upgrade_feature"
                     android:text="feature"
                     android:textColor="#273238"
                     android:textSize="14sp" />
@@ -86,25 +86,25 @@
             android:orientation="horizontal">
             <!-- 【必设】取消按钮tag：beta_cancel_button-->
             <TextView
-                android:tag="beta_cancel_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
+                android:tag="beta_cancel_button"
                 android:text="cancel"
                 android:textColor="#757575"
                 android:textSize="16sp" />
             <!-- 【必设】确认按钮tag：beta_confirm_button-->
             <TextView
-                android:tag="beta_confirm_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
+                android:tag="beta_confirm_button"
                 android:text="confirm"
                 android:textColor="#273238"
                 android:textSize="16sp"

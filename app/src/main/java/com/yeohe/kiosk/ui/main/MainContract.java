@@ -13,6 +13,8 @@ public interface MainContract {
         void showProgress();
         void hideProgress();
         void showError(String error);
+
+        void showExitDialog();
     }
 
     interface Presenter extends BasePresenter {

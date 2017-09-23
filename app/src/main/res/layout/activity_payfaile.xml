@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_login_green"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/bg_layout"
+        layout="@layout/bg_layout" />
+
+    <RelativeLayout
+        android:id="@+id/main_body_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_info_bar"
+        android:layout_below="@+id/bg_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_bottom_margin"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="20dp"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/faile_pay_money_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawablePadding="10dp"
+                    android:drawableTop="@drawable/zhifushibai"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size30"
+                    android:text="支付失败"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:padding="10dp" />
+
+
+                <TextView
+                    android:id="@+id/faile_reson_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/denglijian"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size20"
+                    android:text="密码错误"
+                    />
+
+
+                <com.flyco.roundview.RoundTextView
+                    android:id="@+id/repay_btn"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text=" 重新支付 "
+                    android:textSize="23sp"
+                    android:textColor="@color/white"
+                    rv:rv_backgroundColor="@color/colorPrimary"
+                    rv:rv_backgroundPressColor="#03A9F4"
+                    rv:rv_isRadiusHalfHeight="true"
+                    rv:rv_isRippleEnable="false"
+                    rv:rv_strokeColor="@color/colorPrimary"
+                    rv:rv_strokePressColor="#6D8FB0"
+                    rv:rv_strokeWidth="1dp"
+                    rv:rv_textPressColor="#ffffff"
+                    android:layout_below="@+id/auth_code_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    android:layout_alignParentBottom="true"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/bottom_info_bar"
+        layout="@layout/bottom_info_bar" />
+
+
+</RelativeLayout>

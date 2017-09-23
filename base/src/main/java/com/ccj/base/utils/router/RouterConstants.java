@@ -31,7 +31,7 @@ public final class RouterConstants {
      * annual 年检界面
      * */
     public static final String ANNUAL_MODULE_NAME="/annual/";
-    public static final String ANNUAL_MOUDLE_ACTIVITY=ANNUAL_MODULE_NAME+"AddCarActivity";
+    public static final String ANNUAL_MOUDLE_ACTIVITY=ANNUAL_MODULE_NAME+"AnnualActivity";
 
     /*
     * order 订单界面
@@ -39,6 +39,7 @@ public final class RouterConstants {
     public static final String ORDER_MODULE_NAME="/order/";
     public static final String ORDERLIST_MOUDLE_ACTIVITY=ORDER_MODULE_NAME+"OrderListActivity";
     public static final String ORDERDETAIL_MOUDEL_ACTIVITY=ORDER_MODULE_NAME+"OrderDetailActivity";
+    public static final String ORDER_STYLE_MOUDEL_ACTIVITY=ORDER_MODULE_NAME+"OrderStyleActivity";
 
 
     /*
@@ -54,5 +55,6 @@ public final class RouterConstants {
      * */
     public static final String QUERY_MODULE_NAME="/query/";
     public static final String QUERY_MOUDLE_ACTIVITY=QUERY_MODULE_NAME+"QueryActivity";
+    public static final String QUERY_MOUDLE_DETAIL_ACIVITY=QUERY_MODULE_NAME+"IllegalDetailActivity";
 
 }

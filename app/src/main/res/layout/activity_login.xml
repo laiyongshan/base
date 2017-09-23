@@ -1,95 +1,166 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shape"
-    tools:context=".ui.login.LoginActivity">
+    android:background="@mipmap/bg_login_green"
+    >
 
-
+    <include
+        android:id="@+id/bg_layout"
+        layout="@layout/bg_layout" />
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:id="@+id/login_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:gravity="center"
-        >
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_left_pading"
+        android:paddingRight="@dimen/activity_right_pading"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
-    <com.yeohe.kiosk.widgets.ClearEditText
-        android:id="@+id/username"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/login_edittext_bg"
-        android:drawableLeft="@drawable/icon_user"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:singleLine="true"
-        android:drawableRight="@drawable/delete_selector"
-        android:hint="输入用户名"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawablePadding="12dp"
-        />
+        <com.flyco.roundview.RoundRelativeLayout
+            android:id="@+id/user_phone_num_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="20dp"
+            android:textColor="#ffffff"
+            rv:rv_backgroundColor="@color/white"
+            rv:rv_isRadiusHalfHeight="true"
+            rv:rv_isRippleEnable="false"
+            rv:rv_strokeColor="#03A9F4"
+            rv:rv_strokePressColor="#6D8FB0"
+            rv:rv_strokeWidth="1dp"
+            rv:rv_textPressColor="#ffffff"
+            android:gravity="center_vertical"
+            android:layout_alignRight="@+id/login_btn"
+            android:layout_alignEnd="@+id/login_btn">
 
-    <LinearLayout
-        android:id="@+id/password_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="10dip"
-        android:layout_below="@+id/username"
-        android:weightSum="4"
-        >
 
-        <com.yeohe.kiosk.widgets.ClearEditText
-            android:id="@+id/password"
-            android:drawableLeft="@drawable/account_icon"
-            android:hint="输入验证码"
-            android:singleLine="true"
-            android:password="true"
-            android:drawableRight="@drawable/delete_selector"
+            <com.yeohe.kiosk.widgets.ClearEditText
+                android:id="@+id/user_phone_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/carengine_doubt_img"
+                android:hint="请输入手机号码"
+                android:textColorHint="@color/text_hint"
+                android:text=""
+                android:gravity="center_vertical"
+                android:background="@color/lucency"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size23"
+                android:inputType="number"
+                android:maxLength="11"
+                />
+
+        </com.flyco.roundview.RoundRelativeLayout>
+
+        <com.flyco.roundview.RoundRelativeLayout
+            android:id="@+id/auth_code_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_edittext_bg"
-            android:layout_weight="3.2"
-            android:drawablePadding="12dp"
-            />
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="20dp"
+            android:textColor="#ffffff"
+            rv:rv_backgroundColor="@color/white"
+            rv:rv_isRadiusHalfHeight="true"
+            rv:rv_isRippleEnable="false"
+            rv:rv_strokeColor="#03A9F4"
+            rv:rv_strokePressColor="#6D8FB0"
+            rv:rv_strokeWidth="1dp"
+            rv:rv_textPressColor="#ffffff"
+            android:layout_below="@+id/user_phone_num_layout"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:layout_alignRight="@+id/login_btn"
+            android:layout_alignEnd="@+id/login_btn"
+            >
 
-        <TextView
-            android:layout_width="wrap_content"
+
+            <com.yeohe.kiosk.widgets.ClearEditText
+                android:id="@+id/auth_code_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/get_auth_btn"
+                android:hint="请输入验证码"
+                android:textColorHint="@color/text_hint"
+                android:text=""
+                android:gravity="center_vertical"
+                android:background="@color/lucency"
+                android:lines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size23"
+                />
+
+            <com.flyco.roundview.RoundTextView
+                android:id="@+id/get_auth_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text=" 获取验证码 "
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                rv:rv_backgroundColor="@color/colorPrimary"
+                rv:rv_backgroundPressColor="#03A9F4"
+                rv:rv_isRadiusHalfHeight="true"
+                rv:rv_isRippleEnable="false"
+                rv:rv_strokeColor="@color/colorPrimary"
+                rv:rv_strokePressColor="#6D8FB0"
+                rv:rv_strokeWidth="1dp"
+                rv:rv_textPressColor="#ffffff"
+                android:layout_below="@+id/auth_code_layout"
+                android:layout_marginTop="20dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+        </com.flyco.roundview.RoundRelativeLayout>
+
+        <com.flyco.roundview.RoundTextView
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:text="获取验证码"
-            android:textSize="16sp"
-            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingLeft="120dp"
+            android:paddingRight="120dp"
+            android:paddingTop="15dp"
+            android:text=" 登    录 "
+            android:textSize="23sp"
+            android:textColor="@color/white"
+            rv:rv_backgroundColor="@color/colorPrimary"
+            rv:rv_backgroundPressColor="#03A9F4"
+            rv:rv_isRadiusHalfHeight="true"
+            rv:rv_isRippleEnable="false"
+            rv:rv_strokeColor="@color/colorPrimary"
+            rv:rv_strokePressColor="#6D8FB0"
+            rv:rv_strokeWidth="1dp"
+            rv:rv_textPressColor="#ffffff"
+            android:layout_below="@+id/auth_code_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
             />
-
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/login"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:background="@drawable/login_button_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:layout_below="@+id/password_layout"
-        android:layout_marginTop="25dp"
-        android:text="登录"
-        />
 
     </RelativeLayout>
 
     <include
         android:id="@+id/bottom_info_bar"
-        layout="@layout/bottom_info_bar"
-        />
+        layout="@layout/bottom_info_bar" />
 
 </RelativeLayout>

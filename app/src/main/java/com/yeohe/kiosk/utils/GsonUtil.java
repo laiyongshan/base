@@ -5,6 +5,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.tencent.tinker.android.dex.Code;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,4 +125,32 @@ public class GsonUtil {
         }
         return map;
     }
+
+
+    public static int getStatusCode(String respones) {
+        int code=-1;
+        try {
+            JSONObject obj=new JSONObject(respones);
+            code=obj.getInt("code");
+            return code;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return code;
+    }
+
+    public static String getMsg(String respones){
+        String msg="";
+        try {
+            JSONObject obj=new JSONObject(respones);
+            msg=obj.optString("msg")+"";
+            return msg;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return msg;
+    }
+
 }
