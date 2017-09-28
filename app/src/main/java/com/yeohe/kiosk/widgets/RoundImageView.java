@@ -49,7 +49,6 @@ public class RoundImageView extends ImageView{
         mMatrix = new Matrix();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-
     }
 
     @Override
