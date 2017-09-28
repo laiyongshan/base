@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ccj.base.base.BaseActivity;
 import com.ccj.base.utils.router.RouterConstants;
@@ -49,6 +50,18 @@ public class PaySucessActivity extends BaseActivity {
     @BindView(R.id.finish_btn)
     RoundTextView finish_btn;
 
+    @Autowired
+    String payMoney="";//支付金额
+
+    @Autowired
+    String merchant_name="";//商户名称
+
+    @Autowired
+    String orderCode="";//订单编号
+
+    @Autowired
+    String max_flowing_no="";//流水号
+
     int width,hight;
 
     @Override
@@ -67,6 +80,18 @@ public class PaySucessActivity extends BaseActivity {
             main_body_layout.setLayoutParams(linearParams);
         }
 
+        initView();
+
+    }
+
+
+    @Override
+    public void initView() {
+        super.initView();
+        pay_money_tv.setText(payMoney+"元");
+        merchant_name_tv.setText(merchant_name+"");
+        order_code_tv.setText(orderCode+"");
+        max_flowing_no_tv.setText(max_flowing_no+"");
     }
 
     @OnClick({R.id.back_btn,R.id.finish_btn})

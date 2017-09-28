@@ -11,16 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ccj.base.AppManager;
 import com.ccj.base.R;
 import com.ccj.base.utils.DialogCreator;
+import com.ccj.base.utils.NetUtils;
 import com.ccj.base.utils.router.RouterConstants;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 /**
@@ -45,6 +44,14 @@ public class BaseActivity<T extends BasePresenter>
         mContext = this;
         initDialog();
 
+        if(!NetUtils.isConnected(mContext)){
+            new SweetAlertDialog(mContext,SweetAlertDialog.ERROR_TYPE)
+                    .setConfirmText("我知道了")
+                    .setTitleText("网络连接失败")
+                    .setContentText("请检查网络设置")
+                    .show();
+
+        };
     }
 
     public void initToolBar() {
@@ -79,6 +86,7 @@ public class BaseActivity<T extends BasePresenter>
 //        progressDialog = new ProgressDialog(this);
 //        progressDialog.setMessage(getResources().getString(R.string.show_loading_msg));
         progressDialog= DialogCreator.createLoadingDialog(this,"Loading.....");
+        progressDialog.setCanceledOnTouchOutside(true);
     }
 
 
@@ -123,8 +131,6 @@ public class BaseActivity<T extends BasePresenter>
             }
         }
         return;
-        //}
-
     }
 
     /**

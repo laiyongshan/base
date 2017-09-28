@@ -11,13 +11,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.ccj.base.base.Constants;
 import com.ccj.base.utils.SharedPreferenceUtil;
 import com.flyco.roundview.RoundTextView;
 import com.yeohe.kiosk.R;
+import com.yeohe.kiosk.bean.FirstEvent;
 import com.yeohe.kiosk.ui.addcar.AddCarActivity;
 import com.yeohe.kiosk.ui.addcar.AddCarContract;
 import com.yeohe.kiosk.utils.ScreenSizeUtil;
 import com.yeohe.kiosk.widgets.RoundImageView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,8 +32,9 @@ import butterknife.OnClick;
  */
 
 public class ExitDialog extends Dialog {
+
     @BindView(R.id.exit_img)
-    RoundImageView exit_img;
+    ImageView exit_img;
 
     @BindView(R.id.cancel_btn)
     ImageView cancel_btn;
@@ -37,12 +42,24 @@ public class ExitDialog extends Dialog {
     @BindView(R.id.sure_exit_btn)
     RoundTextView sure_exit_btn;
 
+    @BindView(R.id.main_body_layout)
+    RelativeLayout main_body_layout;
 
     private Activity context;
 
-    public ExitDialog(@NonNull Activity context, @StyleRes int themeResId) {
+
+    public interface ExitInterface{
+        void exit();
+    }
+
+    ExitInterface exitInterface;
+
+    int width, hight;
+
+    public ExitDialog(@NonNull Activity context, @StyleRes int themeResId,ExitInterface exitInterface) {
         super(context, themeResId);
         this.context=context;
+        this.exitInterface=exitInterface;
     }
 
     @Override
@@ -52,22 +69,30 @@ public class ExitDialog extends Dialog {
 
         ButterKnife.bind(this);
 
-        setCanceledOnTouchOutside(false);
+        width = ScreenSizeUtil.getScreenWidth(context);
+        hight = ScreenSizeUtil.getScreenHeight(context);
+        if (width <= hight) {
+            RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) main_body_layout.getLayoutParams();
+            linearParams.width = width / 10 *5;
+            linearParams.height=hight/10*5;
+            main_body_layout.setLayoutParams(linearParams);
+        } else {
+            RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) main_body_layout.getLayoutParams();
+            linearParams.width =(int)(width / 10 *3);
+            linearParams.height=hight/10*7;
+            main_body_layout.setLayoutParams(linearParams);
+        }
 
         Glide.with(context)
-                .load("http://upload-images.jianshu.io/upload_images/2972448-78cb561ab24f41c4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240")
+                .load("http://img3.duitang.com/uploads/item/201508/09/20150809071105_Vm2Jr.jpeg")
                 .centerCrop()
                 .into(exit_img);
-
     }
 
 
-    @OnClick({R.id.exit_img,R.id.cancel_btn,R.id.sure_exit_btn})
+    @OnClick({R.id.cancel_btn,R.id.sure_exit_btn})
     public void click(View view){
         switch(view.getId()){
-            case R.id.exit_img:
-                dismiss();
-                break;
 
             case R.id.cancel_btn:
                 dismiss();
@@ -76,6 +101,8 @@ public class ExitDialog extends Dialog {
             case R.id.sure_exit_btn:
                 SharedPreferenceUtil.getInstance().DeleteUser();//退出删除用户名称
                 SharedPreferenceUtil.getInstance().DeleteToken();//退出删除token值
+                SharedPreferenceUtil.getInstance().setIsLogin(false);
+                exitInterface.exit();
                 dismiss();
                 break;
         }

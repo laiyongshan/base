@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\Documents\GitHub\base\alertlibrary\src\main\assets"/><source path="D:\Documents\GitHub\base\alertlibrary\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\Documents\GitHub\base\alertlibrary\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="F:\Kiosk\alertlibrary\src\main\assets"/><source path="F:\Kiosk\alertlibrary\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="F:\Kiosk\alertlibrary\src\release\assets"/></dataSet></merger>

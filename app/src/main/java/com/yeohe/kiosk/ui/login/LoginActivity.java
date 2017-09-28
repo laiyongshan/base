@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.ServiceWorkerWebSettings;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -58,6 +59,9 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
     @BindView(R.id.login_btn)
     RoundTextView login_btn;
 
+    @BindView(R.id.get_auth_btn)
+    RoundTextView get_auth_btn;
+
     @BindViews({R.id.user_phone_et,R.id.auth_code_et})
     ClearEditText[] ets;
 
@@ -81,7 +85,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
 
     }
 
-    @OnClick({R.id.back_btn,R.id.login_btn})
+    @OnClick({R.id.back_btn,R.id.login_btn,R.id.get_auth_btn})
     public void click(View view){
         switch (view.getId()){
             case R.id.back_btn:
@@ -104,6 +108,16 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
                     return;
                 }else{
                     mPresenter.login(ets[0].getText().toString().trim(),ets[1].getText().toString().trim());
+                }
+                break;
+
+            case R.id.get_auth_btn://获取验证码
+                if(!ets[0].getText().toString().trim().equals("")) {
+                    mPresenter.getAuthCode(ets[0].getText().toString().trim());
+                }else{
+                    //设置晃动
+                    ets[0].setShakeAnimation();
+                    new SweetAlertDialog(LoginActivity.this).setTitleText("提示").setContentText("手机号码不能为空").setConfirmText("OK").show();
                 }
                 break;
         }
@@ -148,7 +162,7 @@ public class LoginActivity extends BaseActivity<LoginContract.Presenter> impleme
             public void run() {
                 failDialog.dismiss();
             }
-        },4000);
+        },5000);
     }
 
     @Override

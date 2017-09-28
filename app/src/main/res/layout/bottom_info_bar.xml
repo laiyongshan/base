@@ -22,18 +22,59 @@
         android:src="@mipmap/tab_logo" />
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="right|center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/qr_img"
+        android:paddingRight="10dp"
+        >
+
     <TextView
+        android:id="@+id/company_name_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/logo_iv"
         android:drawablePadding="10dp"
-        android:drawableRight="@mipmap/qrcode"
         android:gravity="right|center_vertical"
         android:lines="1"
         android:paddingLeft="5dp"
         android:text="@string/company_name"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/logo_iv"
+        android:drawablePadding="10dp"
+        android:gravity="right|center_vertical"
+        android:lines="1"
+        android:paddingLeft="5dp"
+        android:text="@string/copyright"
+        android:textSize="12sp"
+        android:layout_below="@+id/company_name_tv"
+        android:layout_toLeftOf="@+id/qr_img"
+        />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/qr_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/qrcode"
+        android:layout_alignParentRight="true"
+        />
+
+
 
 </RelativeLayout>

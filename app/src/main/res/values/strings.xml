@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">飞狗车盟自助设备版</string>
-    <string name="company_name">广州市友禾信息科技有限公司</string>
+    <string name="company_name">广州市飞狗信息科技有限公司</string>
+    <string name="copyright"> Copyright© 2016-2017 FlyingDog All Rights Reserved</string>
 
     <string name="commission_title3">办理年检前，需准备以下材料快递到指定地址</string>
     <string name="commission8">以上资料缺一不可，否则无法办理，三次无法提供全面资料，将会导致锁证。</string>

@@ -68,7 +68,7 @@
                     android:padding="10dp"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_size20"
-                    android:text="密码错误"
+                    android:text=""
                     />
 
 

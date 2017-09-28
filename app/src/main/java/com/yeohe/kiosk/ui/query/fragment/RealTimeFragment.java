@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
@@ -34,7 +35,9 @@ import com.yeohe.kiosk.adapter.IllegalAdapter;
 import com.yeohe.kiosk.bean.FirstEvent;
 import com.yeohe.kiosk.bean.Violation;
 import com.yeohe.kiosk.http.URLs;
+import com.yeohe.kiosk.ui.annual.AnnualActivity;
 import com.yeohe.kiosk.ui.dialog.KonwDialog;
+import com.yeohe.kiosk.ui.pay.PayActivity;
 import com.yeohe.kiosk.utils.EncryptUtil;
 import com.yeohe.kiosk.utils.GsonUtil;
 import com.yeohe.kiosk.utils.UIHelper;
@@ -66,7 +69,7 @@ import okhttp3.Request;
  */
 
 @SuppressLint("ValidFragment")
-public class RealTimeFragment extends Fragment  {
+public class RealTimeFragment extends Fragment {
     private IllegalAdapter illegalAdapter;
     private Violation violation;
     private View view;
@@ -95,33 +98,33 @@ public class RealTimeFragment extends Fragment  {
     List<Integer> listItemID = new ArrayList<Integer>();
     private List<Violation.DataEntity.PeccancyListEntity> peccancyList;
 
-    private int searchtype=0;
+    private int searchtype = 0;
 
 
     private SelectBrocastReceiver selectBrocastReceiver;
     private IntentFilter selectIntentFilter;
-    private final static String SELECTED_ACTION1="com.youhecheguanjia.illegallistselect";
+    private final static String SELECTED_ACTION1 = "com.youhecheguanjia.illegallistselect";
 
-    public RealTimeFragment(Violation violation,int searchtype){
-        this.violation=violation;
-        peccancyList=violation.getData().getPeccancyList();
-        this.searchtype=searchtype;
+    public RealTimeFragment(Violation violation, int searchtype) {
+        this.violation = violation;
+        peccancyList = violation.getData().getPeccancyList();
+        this.searchtype = searchtype;
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view=inflater.inflate(R.layout.fragment_real_time,null);
-        ButterKnife.bind(this,view);
+        view = inflater.inflate(R.layout.fragment_real_time, null);
+        ButterKnife.bind(this, view);
 
         //注册EventBus
         EventBus.getDefault().register(this);
 
 
-        selectIntentFilter=new IntentFilter(SELECTED_ACTION1);
-        selectBrocastReceiver=new SelectBrocastReceiver();
-        getActivity().registerReceiver(selectBrocastReceiver,selectIntentFilter);
+        selectIntentFilter = new IntentFilter(SELECTED_ACTION1);
+        selectBrocastReceiver = new SelectBrocastReceiver();
+        getActivity().registerReceiver(selectBrocastReceiver, selectIntentFilter);
 
         initView();
 
@@ -134,18 +137,17 @@ public class RealTimeFragment extends Fragment  {
         super.onDestroy();
         EventBus.getDefault().unregister(this);//反注册EventBus
 
-        if(selectBrocastReceiver!=null){
+        if (selectBrocastReceiver != null) {
             getActivity().unregisterReceiver(selectBrocastReceiver);
         }
 
     }
 
 
-
     @Subscribe
     public void onEvent(FirstEvent event) {
     /* Do something */
-        if(event.getMsg().equals("1")){
+        if (event.getMsg().equals("1")) {
             no_illegal_layout.setVisibility(View.VISIBLE);
             commit_layout.setVisibility(View.GONE);
         }
@@ -158,8 +160,9 @@ public class RealTimeFragment extends Fragment  {
     float totalCount;//总罚款
     float totalLateFee;//总滞纳金
     int totalDegree;//总扣分
-    private void initView(){
-        illegalAdapter=new IllegalAdapter(getActivity(),violation,1);
+
+    private void initView() {
+        illegalAdapter = new IllegalAdapter(getActivity(), violation, 1);
         realtime_illegal_lv.setAdapter(illegalAdapter);
 
         listItemID.clear();
@@ -173,41 +176,42 @@ public class RealTimeFragment extends Fragment  {
             }
         }
 
-        for(Violation.DataEntity.PeccancyListEntity peccancyListEntity:peccancyList){
+        for (Violation.DataEntity.PeccancyListEntity peccancyListEntity : peccancyList) {
             if (peccancyListEntity.getQuotedprice().equals("1") &&
                     peccancyListEntity.getIscommit() == 1 &&
-                    (!(peccancyListEntity.getDegree().equals("0")&&peccancyListEntity.getPrice()==0&&peccancyListEntity.getQuotedprice().equals("1")))){
+                    (!(peccancyListEntity.getDegree().equals("0") && peccancyListEntity.getPrice() == 0 && peccancyListEntity.getQuotedprice().equals("1")))) {
                 count++;
-                totalServiceFee+=(float) peccancyListEntity.getPrice();
-                totalCount+=Float.valueOf(peccancyListEntity.getCount());
-                totalLateFee+=Float.valueOf(peccancyListEntity.getLatefee());
-                totalDegree+=Integer.valueOf(peccancyListEntity.getDegree());
+                totalServiceFee += (float) peccancyListEntity.getPrice();
+                totalCount += Float.valueOf(peccancyListEntity.getCount());
+                totalLateFee += Float.valueOf(peccancyListEntity.getLatefee());
+                totalDegree += Integer.valueOf(peccancyListEntity.getDegree());
 
-                TLog.logI(totalServiceFee+"\n"+(float) peccancyListEntity.getPrice());
-                TLog.logI(totalDegree+"");
+                TLog.logI(totalServiceFee + "\n" + (float) peccancyListEntity.getPrice());
+                TLog.logI(totalDegree + "");
             }
         }
 
-        totalPrice+=(totalServiceFee+totalCount+totalLateFee);
-        count_illegal_choose_tv.setText(""+count);
-        price_tv.setText(totalPrice+"元");
-        sevice_fee_tv.setText(totalServiceFee+"元");
+        totalPrice += (totalServiceFee + totalCount + totalLateFee);
+        count_illegal_choose_tv.setText("" + count);
+        price_tv.setText(totalPrice + "元");
+        sevice_fee_tv.setText(totalServiceFee + "元");
 
     }
 
     KonwDialog konwDialog;
+
     @OnClick({R.id.real_commit_btn})
-    public void click(View view){
-        switch (view.getId()){
+    public void click(View view) {
+        switch (view.getId()) {
             case R.id.real_commit_btn:
-                konwDialog=new KonwDialog(getActivity(), R.style.Dialog, new KonwDialog.AgreeInterface() {
+                konwDialog = new KonwDialog(getActivity(), R.style.Dialog, new KonwDialog.AgreeInterface() {
                     @Override
                     public void isAgree(boolean isagree) {
-                        if(isagree){
+                        if (isagree) {
                             //同意
                             commitOrder();
                             konwDialog.dismiss();
-                        }else{
+                        } else {
                             konwDialog.dismiss();
                         }
                     }
@@ -220,9 +224,9 @@ public class RealTimeFragment extends Fragment  {
 
     /**
      * 提交訂單
-     * */
+     */
 
-    private void commitOrder(){
+    private void commitOrder() {
         if ((listItemID.size() == 0) && totalPrice == 0) {
 //                    Toast.makeText(IllegalQueryActivty.this,"未选择任何违章或违章已全部提交，用户可以到主界面的\"订单查询\"页面中查看",Toast.LENGTH_LONG).show();
             new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
@@ -241,36 +245,37 @@ public class RealTimeFragment extends Fragment  {
 //
 //                addDravingLisenceTipsDialog.show();
 //            } else {
-                if (searchtype == 1) {//代扣分订单提交
-                    if (!listItemID.isEmpty()) {
-                        commitType1Order();
+            if (searchtype == 1) {//代扣分订单提交
+                if (!listItemID.isEmpty()) {
+                    commitType1Order();
                 }
-                } else if (searchtype == 2) {//本人本车订单提交
-                    if (totalDegree >= 12) {
-                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-                                .setTitleText("提 示")
-                                .setContentText("本人本车订单所选违章总扣分不应大于或等于12分")
-                                .setConfirmText("确 定")
-                                .show();
-                    } else {
-                    }
+            } else if (searchtype == 2) {//本人本车订单提交
+                if (totalDegree >= 12) {
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("提 示")
+                            .setContentText("本人本车订单所选违章总扣分不应大于或等于12分")
+                            .setConfirmText("确 定")
+                            .show();
+                } else {
                 }
+            }
 //            }
         }
     }
 
 
-    List<Violation.DataEntity.PeccancyListEntity> order_violations=new ArrayList<Violation.DataEntity.PeccancyListEntity>();
+    List<Violation.DataEntity.PeccancyListEntity> order_violations = new ArrayList<Violation.DataEntity.PeccancyListEntity>();
     String peccancyids = "";//违章id拼成
-//    AddDravingLisenceTipsDialog addDravingLisenceTipsDialog;//补充资料弹出框
-    public String getPeccancyids(){
+
+    //    AddDravingLisenceTipsDialog addDravingLisenceTipsDialog;//补充资料弹出框
+    public String getPeccancyids() {
         listItemID.clear();
         for (int i = 0; i < illegalAdapter.mChecked.size(); i++) {
             if (illegalAdapter.mChecked.get(i)) {
-                if (peccancyList.get(i).getIscommit()==1&&
+                if (peccancyList.get(i).getIscommit() == 1 &&
                         (!(peccancyList.get(i).getDegree().equals("0") &&
-                                peccancyList.get(i).getPrice()==0&&peccancyList.get(i).getQuotedprice().equals("1"))))
-                    if(peccancyList.get(i).getQuotedprice().equals("1")){
+                                peccancyList.get(i).getPrice() == 0 && peccancyList.get(i).getQuotedprice().equals("1"))))
+                    if (peccancyList.get(i).getQuotedprice().equals("1")) {
                         listItemID.add(i);
                     }
             }
@@ -287,39 +292,41 @@ public class RealTimeFragment extends Fragment  {
             }
         }
 
-        return  peccancyids;
+        return peccancyids;
     }
 
 
     /**
      * 非本人本车订单提交
-     * */
-    public void commitType1Order(){
+     */
+    public void commitType1Order() {
 //        getPeccancyids();//获取选中的违章Id
-        if(!listItemID.isEmpty()) {
+        if (!listItemID.isEmpty()) {
             commitOrder(commitOrderParams(getPeccancyids()), URLs.COMMIT_ORDER);
         }
     }
 
     HashMap map;
+
     /*
     * 非本人本车提交订单请求参数
     * */
-    public HashMap commitOrderParams(String peccancyids){
-        map=new HashMap();
+    public HashMap commitOrderParams(String peccancyids) {
+        map = new HashMap();
         String token = Constants.token;
-        map.put("token",token);
-        map.put("carid",Constants.carid);
-        map.put("peccancyids",peccancyids);//违章ID拼成
-        map.put("totalprice",totalPrice+"");//支付总金额
+        map.put("token", token);
+        map.put("carid", Constants.carid);
+        map.put("peccancyids", peccancyids);//违章ID拼成
+        map.put("totalprice", totalPrice + "");//支付总金额
         return map;
     }
 
 
     /**
      * 提交订单
-     * */
-    public String ordercode="";//普通订单编号
+     */
+    public String ordercode = "";//普通订单编号
+
     public void commitOrder(HashMap map, final String url) {
 
         OkHttpUtils.post().url(url).params(EncryptUtil.encrypt(map)).build().execute(new StringCallback() {
@@ -346,35 +353,8 @@ public class RealTimeFragment extends Fragment  {
                 try {
                     JSONObject obj = new JSONObject(EncryptUtil.decryptJson(response.toString(), getActivity()));
                     String status = obj.optString("status");
-                    String show_msg=obj.optString("show_msg");
-//                    int code = obj.getInt("code");
-//                    if (status.equals("fail")) {
-//                        if (dataObj.has("code")) {
-//                            code = dataObj.getInt("code");
-//                        }
-//                    }
+                    String show_msg = obj.optString("show_msg");
 
-//                    if (url.equals(URLs.COMMIT_ORDER)) {//普通订单
-//
-//                        UIHelper.showErrTips(code, getActivity());//提示错误信息
-//
-//                        if (code == 0) {
-//                            Toast.makeText(getActivity(), "提交订单成功", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
-//                                    .setTitleText("提交失败")
-//                                    .setConfirmText(""+show_msg)
-//                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                        @Override
-//                                        public void onClick(SweetAlertDialog sDialog) {
-//                                        }
-//                                    })
-//                                    .show();
-//
-////                            Toast.makeText(getActivity(), "提交订单失败,"+show_msg, Toast.LENGTH_SHORT).show();
-//                        }
-
-//                    }
                     if (status.equals("ok")) {
                         if (url.equals(URLs.COMMIT_ORDER)) {//普通订单
 
@@ -388,23 +368,26 @@ public class RealTimeFragment extends Fragment  {
                                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                         @Override
                                         public void onClick(SweetAlertDialog sDialog) {
-                                            ARouter.getInstance().build(RouterConstants.PAY_MOUDLE_ACTIVITY)//跳转到支付页面
-                                                    .withString("orderCode",ordercode)
-                                                    .withString("paymoney",totalPrice+"")
-                                                    .navigation();
-
+                                            navigateToPay();
                                             EventBus.getDefault().post("finish");
                                         }
                                     })
                                     .show();
 
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    navigateToPay();
+                                    EventBus.getDefault().post("finish");
+                                }
+                            },2000);
                         }
                     } else if (status.equals("fail")) {
                         String errormsg = obj.getString("show_msg");
                         Toast.makeText(getActivity(), "订单提交失败，" + errormsg, Toast.LENGTH_LONG).show();
                         new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
                                 .setTitleText("提交失败")
-                                .setContentText(""+show_msg)
+                                .setContentText("" + show_msg)
                                 .setConfirmText("确定")
                                 .show();
                     }
@@ -420,68 +403,79 @@ public class RealTimeFragment extends Fragment  {
     }
 
 
+    //跳转到支付
+    private void navigateToPay(){
+        Intent intent = new Intent(getActivity(), PayActivity.class);
+        intent.putExtra("ordernumber", ordercode);
+        intent.putExtra("ordertype", 1);
+        intent.putExtra("paymoney", totalPrice+"");
+        startActivity(intent);
+    }
+
+
     class SelectBrocastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            String quotedpriceType=intent.getStringExtra("quotedprice");
-            float price=Float.valueOf(intent.getIntExtra("price",0));
-            float count=Float.valueOf(intent.getStringExtra("count"));
-            int degree=Integer.valueOf(intent.getStringExtra("degree"));
-            float lateFre=Float.valueOf(intent.getIntExtra("lateFre",0));
-            int isSelect=intent.getIntExtra("isSelect",-1);
+            String quotedpriceType = intent.getStringExtra("quotedprice");
+            float price = Float.valueOf(intent.getIntExtra("price", 0));
+            float count = Float.valueOf(intent.getStringExtra("count"));
+            int degree = Integer.valueOf(intent.getStringExtra("degree"));
+            float lateFre = Float.valueOf(intent.getIntExtra("lateFre", 0));
+            int isSelect = intent.getIntExtra("isSelect", -1);
 
 
-            if(isSelect==1&&quotedpriceType.equals("1")){
-                totalPrice+=(price+count+lateFre);
-                totalServiceFee+=price;
-                totalDegree+=degree;
-            }else if(isSelect==0&&quotedpriceType.equals("1")){
-                totalPrice-=(price+count+lateFre);
-                totalDegree-=degree;
-                totalServiceFee-=price;
+            if (isSelect == 1 && quotedpriceType.equals("1")) {
+                totalPrice += (price + count + lateFre);
+                totalServiceFee += price;
+                totalDegree += degree;
+            } else if (isSelect == 0 && quotedpriceType.equals("1")) {
+                totalPrice -= (price + count + lateFre);
+                totalDegree -= degree;
+                totalServiceFee -= price;
             }
 
             listItemID.clear();
             for (int i = 0; i < illegalAdapter.mChecked.size(); i++) {
                 if (illegalAdapter.mChecked.get(i)) {
-                    if (peccancyList.get(i).getIscommit()==1&&
-                            (!(peccancyList.get(i).getDegree().equals("0") && peccancyList.get(i).getPrice()==0&&peccancyList.get(i).getQuotedprice().equals("1"))))
-                        if(peccancyList.get(i).getQuotedprice().equals("1")){
+                    if (peccancyList.get(i).getIscommit() == 1 &&
+                            (!(peccancyList.get(i).getDegree().equals("0") && peccancyList.get(i).getPrice() == 0 && peccancyList.get(i).getQuotedprice().equals("1"))))
+                        if (peccancyList.get(i).getQuotedprice().equals("1")) {
                             listItemID.add(i);
                         }
                 }
             }
 
 
-            if(totalPrice<0){
-                totalPrice=0;
-                totalServiceFee=0;
+            if (totalPrice < 0) {
+                totalPrice = 0;
+                totalServiceFee = 0;
             }
-            if(totalDegree<0){totalDegree=0;}
-            if(listItemID.isEmpty()){
-                price_tv.setText(0+"元");
-            }else{
-                price_tv.setText(totalPrice+"元");
-                sevice_fee_tv.setText(totalServiceFee+"元");
+            if (totalDegree < 0) {
+                totalDegree = 0;
+            }
+            if (listItemID.isEmpty()) {
+                price_tv.setText(0 + "元");
+            } else {
+                price_tv.setText(totalPrice + "元");
+                sevice_fee_tv.setText(totalServiceFee + "元");
             }
 
-            if((listItemID.size()==0)&&totalPrice==0){
+            if ((listItemID.size() == 0) && totalPrice == 0) {
                 real_commit_btn.setClickable(false);
                 real_commit_btn.setEnabled(false);
 //                real_commit_btn.setBackgroundResource(R.drawable.tijiaoa2);
-                price_tv.setText(0+"元");
-                sevice_fee_tv.setText(0+"元");
-            }else{
+                price_tv.setText(0 + "元");
+                sevice_fee_tv.setText(0 + "元");
+            } else {
                 real_commit_btn.setClickable(true);
                 real_commit_btn.setEnabled(true);
 //                real_commit_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.tijiao_bg));
             }
 
-            count_illegal_choose_tv.setText(listItemID.size()+"");//已选多少条违章
+            count_illegal_choose_tv.setText(listItemID.size() + "");//已选多少条违章
         }
     }
-
 
 
 }

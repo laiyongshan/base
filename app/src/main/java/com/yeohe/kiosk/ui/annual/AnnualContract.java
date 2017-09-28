@@ -18,9 +18,9 @@ public interface AnnualContract {
         HashMap getAddParams();
         void showAdressAndPrice(Annual annual);
 
-        void showSucessDialog(String orderCoder);
+        void showSucessDialog(String orderCoder,String paymoney);
 
-        void navigateToPay(String orderCode);//提交订单成功，跳转到支付
+        void navigateToPay(String orderCode,String paymoney);//提交订单成功，跳转到支付
     }
 
     interface Presenter extends BasePresenter {

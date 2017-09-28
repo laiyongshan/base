@@ -20,12 +20,12 @@ public interface PayContract {
 
     interface Presenter extends BasePresenter {
         void onDestroy();
-        void loadQRUrl(String url,HashMap map);
-        void loadPayStatus(String url,HashMap map);
+        void loadQRUrl(String url,HashMap map);//获取二维码
+        void loadPayStatus(String url,HashMap map);//循环检测扫码支付的结果
 
-        void getPayType(String order);//获取支付通道信息
-        void checkPayment(HashMap map);//违章支付订单校验
-        void annualOrderCheck(HashMap map);//年检订单校验
+        void getPayType(String order,int orderType);//获取支付通道信息
+        void checkPayment(String orderCode,String ordermoney);//违章支付订单校验
+        void annualOrderCheck(String orderCode,String ordermoney);//年检订单校验
 
     }
 

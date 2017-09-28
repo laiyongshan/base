@@ -60,9 +60,9 @@ public class QueryPresenter implements QueryContract.Presenter {
             @Override
             public void onResponse(String response, int id) {
                 Violation violation= GsonUtil.GsonToBean(EncryptUtil.decryptJson(response,context),Violation.class);
+                TLog.logI(EncryptUtil.decryptJson(response, context) + "");
                 if(violation.getCode()==0) {
                     view.setData(violation);//初始化数据
-                    TLog.logI(EncryptUtil.decryptJson(response, context) + "");
                 }else{
                     view.showError("查询失败",violation.getMsg().toString()+"");
 

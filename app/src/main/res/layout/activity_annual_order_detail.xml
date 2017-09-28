@@ -22,6 +22,9 @@
         android:textSize="23sp"
         android:layout_below="@+id/bg_layout"
         android:layout_centerHorizontal="true"
+        android:drawableRight="@mipmap/delete_btn"
+        android:layout_marginLeft="@dimen/activity_bottom_margin"
+        android:layout_marginRight="@dimen/activity_bottom_margin"
         />
 
 
@@ -30,16 +33,16 @@
         android:id="@+id/main_body_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_info_bar"
-        android:layout_below="@+id/title_tv"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/activity_bottom_margin"
-        android:layout_marginRight="@dimen/activity_right_margin"
-        android:layout_marginBottom="@dimen/activity_bottom_margin"
         android:background="@drawable/round_corner_white"
         android:gravity="center"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:layout_below="@+id/title_tv"
+        android:layout_above="@+id/bottom_info_bar"
+        android:layout_alignLeft="@+id/title_tv"
+        android:layout_alignStart="@+id/title_tv"
+        android:layout_marginRight="@dimen/activity_bottom_margin"
+        android:layout_marginBottom="@dimen/activity_bottom_margin"
+        >
 
 
         <ScrollView

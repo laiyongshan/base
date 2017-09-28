@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.yeohe.kiosk.R;
 import com.yeohe.kiosk.bean.Annual;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/6/16.
  */
@@ -23,18 +25,24 @@ public class PreAdapter extends BaseAdapter {
     private int selectedPosition = -1;
 
     private Annual annual;
+    private List<Annual.DataEntity.ProvincesEntity> provinces;
 
 
     public PreAdapter(Context context, Annual annual){
         this.context = context;
         inflater= LayoutInflater.from(context);
         this.annual=annual;
+        this.provinces=annual.getData().getProvinces();
     }
 
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return annual.getData().getProvinces().size();
+        if(provinces!=null) {
+            return provinces.size();
+        } else{
+            return 0;
+        }
     }
 
     @Override

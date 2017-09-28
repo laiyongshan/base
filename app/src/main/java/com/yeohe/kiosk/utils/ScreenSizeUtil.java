@@ -2,12 +2,13 @@ package com.yeohe.kiosk.utils;
 
 import android.app.Activity;
 
+import com.yeohe.kiosk.AppApplication;
+
 /**
  * Created by Administrator on 2017/8/31.
  */
 
 public class ScreenSizeUtil {
-
 
     /*
     * 获取屏幕宽度

@@ -101,7 +101,7 @@ public class OrderdetaiActivityV2 extends AppCompatActivity implements View.OnCl
         hight=ScreenSizeUtil.getScreenHeight(this);
         if(width<=hight) {
             RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) main_body_layout.getLayoutParams();
-        }else{
+        }else if(width>3000||width>hight){
             RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) main_body_layout.getLayoutParams();
             RelativeLayout.LayoutParams linearParams2= (RelativeLayout.LayoutParams) title_tv.getLayoutParams();
             linearParams.width = (int)(width*0.618);

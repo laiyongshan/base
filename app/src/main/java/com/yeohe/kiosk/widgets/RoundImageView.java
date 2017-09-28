@@ -23,7 +23,7 @@ import android.widget.ImageView;
 public class RoundImageView extends ImageView{
 
     //圆角大小，默认为10
-    private int mBorderRadius = 20;
+    private int mBorderRadius = 10;
 
     private Paint mPaint;
 
@@ -49,6 +49,7 @@ public class RoundImageView extends ImageView{
         mMatrix = new Matrix();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
+
     }
 
     @Override

@@ -54,6 +54,7 @@ public class URLs {
     public final static String GET_PAY_STATUS=HOST+"/MJPay/getPayStatus.html";//获取订单支付结果(茂捷线上二维码通道)
 
     public final static String LOGIN_URL=HOST+"";//登录接口
+    public final static String GET_AUTH_CODE=HOST+"";//获取手机验证码
 
 
 

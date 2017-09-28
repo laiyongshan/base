@@ -24,10 +24,12 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.volley.VolleyError;
 import com.ccj.base.base.BaseActivity;
 import com.ccj.base.base.Constants;
 import com.ccj.base.utils.DialogCreator;
+import com.ccj.base.utils.TLog;
 import com.ccj.base.utils.router.RouterConstants;
 import com.flyco.roundview.RoundTextView;
 import com.yeohe.kiosk.AppApplication;
@@ -81,7 +83,7 @@ public class QueryActivity extends BaseActivity<QueryContract.Presenter> impleme
     private FragmentPagerAdapter fragmentPagerAdapter;
 
     @Autowired
-    String carid="";
+    String carid;
 
     private int searchtype=-1;//是否本人本车  1代扣分   2本人本車
 
@@ -93,6 +95,7 @@ public class QueryActivity extends BaseActivity<QueryContract.Presenter> impleme
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
+        ARouter.getInstance().inject(this);
         ButterKnife.bind(this);
 
         //注册EventBus
@@ -105,8 +108,9 @@ public class QueryActivity extends BaseActivity<QueryContract.Presenter> impleme
 
         initView();
 
+        TLog.logI("carid>>>>>>"+carid);
         queryParams.put("token", Constants.token);
-        queryParams.put("carid",carid);
+        queryParams.put("carid",carid+"");
         queryParams.put("searchtype",1);
         mPresenter.loadData(URLs.CLIENT_QUERY_POST,queryParams);
     }

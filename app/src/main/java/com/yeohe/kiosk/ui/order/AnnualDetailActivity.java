@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.ccj.base.base.Constants;
+import com.ccj.base.utils.SharedPreferenceUtil;
+import com.ccj.base.utils.TLog;
 import com.flyco.roundview.RoundTextView;
 import com.yeohe.kiosk.R;
 import com.yeohe.kiosk.bean.Annual;
@@ -100,11 +102,12 @@ public class AnnualDetailActivity extends Activity implements View.OnClickListen
 
         width= ScreenSizeUtil.getScreenWidth(AnnualDetailActivity.this);
         hight=ScreenSizeUtil.getScreenHeight(AnnualDetailActivity.this);
+
+        TLog.logI(""+width+"\n"+hight);
+
         if(width<=hight) {
             RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) main_body_layout.getLayoutParams();
-            linearParams.width = width / 10 * 9;        //
-            main_body_layout.setLayoutParams(linearParams);
-        }else{
+        }else if(width>3000||width>hight){
             RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) main_body_layout.getLayoutParams();
             linearParams.width = (int)(width*0.618);        //
             RelativeLayout.LayoutParams linearParams3= (RelativeLayout.LayoutParams) title_tv.getLayoutParams();
@@ -123,7 +126,7 @@ public class AnnualDetailActivity extends Activity implements View.OnClickListen
         getOrderDetatil(getIntent().getStringExtra("ordercode")==null?"":getIntent().getStringExtra("ordercode"));
     }
 
-    @OnClick({R.id.back_btn,R.id.pay_now_tv})
+    @OnClick({R.id.back_btn,R.id.pay_now_tv,R.id.title_tv})
     public void click(View view){
         switch (view.getId()){
             case R.id.back_btn:
@@ -138,6 +141,11 @@ public class AnnualDetailActivity extends Activity implements View.OnClickListen
                 startActivity(intent);
                 finish();
                 break;
+
+            case R.id.title_tv:
+                deleteOrde();
+                break;
+
 
         }
     }
@@ -343,7 +351,6 @@ public class AnnualDetailActivity extends Activity implements View.OnClickListen
         String orderid = annualDetailBean.getOrdercode();
         String status = annualDetailBean.getStatus();
         doLoginDialog(status, orderid);
-
     }
 
     /**
@@ -380,7 +387,7 @@ public class AnnualDetailActivity extends Activity implements View.OnClickListen
 
     public void delect(String orderid) {
         String token = TokenSQLUtils.check();
-        deleteOrdehHashMap.put("token", token);
+        deleteOrdehHashMap.put("token", SharedPreferenceUtil.getInstance().getToken());
         deleteOrdehHashMap.put("ordercode", orderid);
 
         VolleyUtil.getVolleyUtil(AnnualDetailActivity.this).StringRequestPostVolley(URLs.ANNUAL_DEL, EncryptUtil.encrypt(deleteOrdehHashMap), new VolleyInterface() {

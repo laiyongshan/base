@@ -1,5 +1,6 @@
 package com.yeohe.kiosk.ui.addcar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -35,8 +36,8 @@ import okhttp3.Request;
 public class AddCarPresenter implements AddCarContract.Presenter {
 
     private AddCarContract.View view;
-    private Context context;
-    public AddCarPresenter(Context context, AddCarContract.View view){
+    private Activity context;
+    public AddCarPresenter(Activity context, AddCarContract.View view){
         this.view=view;
         this.context=context;
     }
@@ -100,7 +101,9 @@ public class AddCarPresenter implements AddCarContract.Presenter {
                 TLog.logI(EncryptUtil.decryptJson(response,context)+"");
                 CarType carType= GsonUtil.GsonToBean(EncryptUtil.decryptJson(response,context),CarType.class);
 
-                view.showCarTypeList(carType.getData().getCarTypeList());
+                if(carType.getData()!=null) {
+                    view.showCarTypeList(carType.getData().getCarTypeList());
+                }
             }
 
         });
@@ -158,6 +161,7 @@ public class AddCarPresenter implements AddCarContract.Presenter {
                 e.printStackTrace();
                 TLog.logI(e.toString());
                 view.showError("网络请求错误",e.toString());
+                view.hideProgress();
             }
             @Override
             public void onResponse(String response, int id) {
@@ -166,8 +170,13 @@ public class AddCarPresenter implements AddCarContract.Presenter {
                     JSONObject obj=new JSONObject(EncryptUtil.decryptJson(response,context));
                     String status=obj.optString("status");
                     if(status.equals("ok")){
-                        String carid = obj.getJSONObject("data").get("carid") + "";
+                        String carid = obj.getJSONObject("data").getString("carid") + "";
                         queryIllegal(URLs.VIOLATION_QUERY,getQueryParams(carid));//查询违章
+//                        TLog.logI(""+carid);
+//                        ARouter.getInstance().build(RouterConstants.QUERY_MOUDLE_ACTIVITY)
+//                                .withString("carid", carid)
+//                                .navigation();//跳转到违章查询
+
                     }else{
                         view.showError("添加车辆失败",obj.optString("msg"));
                     }
@@ -211,6 +220,8 @@ public class AddCarPresenter implements AddCarContract.Presenter {
                 e.printStackTrace();
                 TLog.logI(e.toString());
                 view.showError("网络请求错误",e.toString());
+                view.hideProgress();
+
             }
             @Override
             public void onResponse(String response, int id) {
@@ -223,8 +234,11 @@ public class AddCarPresenter implements AddCarContract.Presenter {
                         ARouter.getInstance().build(RouterConstants.QUERY_MOUDLE_ACTIVITY)
                                 .withString("carid", (String) map.get("carid"))
                                 .navigation();//跳转到违章查询
+
+                        context.finish();
+
                     }else{
-                        view.showError("",obj.optString("msg")+"");
+                        view.showError("查询失败",obj.optString("msg")+"");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

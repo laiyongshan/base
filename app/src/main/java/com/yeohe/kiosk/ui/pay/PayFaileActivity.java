@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ccj.base.base.BaseActivity;
 import com.ccj.base.utils.router.RouterConstants;
@@ -34,6 +35,9 @@ public class PayFaileActivity extends BaseActivity {
     @BindView(R.id.repay_btn)
     RoundTextView repay_btn;//重新支付按钮
 
+    @Autowired
+    String error_msg="";//支付失败原因
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class PayFaileActivity extends BaseActivity {
             main_body_layout.setLayoutParams(linearParams);
         }
 
+        faile_reson_tv.setText(error_msg+"");//支付失败原因
+
     }
 
 
@@ -60,7 +66,7 @@ public class PayFaileActivity extends BaseActivity {
                 break;
 
             case R.id.repay_btn://重新支付
-
+                finish();
                 break;
         }
     }

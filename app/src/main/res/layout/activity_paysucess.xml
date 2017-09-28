@@ -85,7 +85,7 @@
                         android:textStyle="bold"
                         android:typeface="sans"
                         android:textColor="@color/red"
-                        android:text="1000元"
+                        android:text=""
                         />
 
                 </LinearLayout>

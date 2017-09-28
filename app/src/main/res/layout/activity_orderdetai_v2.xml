@@ -23,6 +23,8 @@
         android:layout_below="@+id/bg_layout"
         android:layout_centerHorizontal="true"
         android:drawableRight="@mipmap/delete_btn"
+        android:layout_marginLeft="@dimen/activity_bottom_margin"
+        android:layout_marginRight="@dimen/activity_bottom_margin"
         />
 
 

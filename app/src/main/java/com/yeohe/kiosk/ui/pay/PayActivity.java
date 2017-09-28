@@ -1,5 +1,6 @@
 package com.yeohe.kiosk.ui.pay;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -45,25 +46,25 @@ public class PayActivity extends BaseActivity<PayContract.Presenter> implements 
     RelativeLayout main_body_layout;
 
     @BindView(R.id.back_btn)
-    RoundTextView back_btn;
+    RoundTextView back_btn;//返回按钮
 
     @BindView(R.id.weixin_pay_img)
-    ImageView weixin_pay_img;
+    ImageView weixin_pay_img;//微信支付按钮
 
     @BindView(R.id.ali_pay_img)
-    ImageView ali_pay_img;
+    ImageView ali_pay_img;//支付宝支付按钮
 
     @BindView(R.id.type_tips_tv)
     TextView type_tips_tv;
 
     @BindView(R.id.pay_qr_code_img)
-    ImageView pay_qr_code_img;
+    ImageView pay_qr_code_img;//二维码
 
     public static Timer timer;
     private TimerTask task;
 
-    private String ordercode;//订单号
-    private float paymoney;//应付费用
+    private String ordercode="";//订单号
+    private String paymoney="";//应付费用
     private int ordertype;//1：违章订单  2：补款订单  3：年检订单
 
     @Override
@@ -72,10 +73,14 @@ public class PayActivity extends BaseActivity<PayContract.Presenter> implements 
         setContentView(R.layout.activity_pay);
         ButterKnife.bind(this);
 
-        ordercode = getIntent().getStringExtra("ordernumber");//得到订单号
-        ordertype=getIntent().getIntExtra("ordertype",0);
-        paymoney=Float.valueOf(getIntent().getStringExtra("zonfakuan"));//支付总金额
-        TLog.logI(ordercode+"\n"+paymoney);
+        Intent extraIntent=getIntent();
+        if(extraIntent!=null) {
+            ordercode = extraIntent.getStringExtra("ordernumber");//得到订单号
+            ordertype = extraIntent.getIntExtra("ordertype", 0);//1：违章订单  2：补款订单  3：年检订单
+            paymoney = extraIntent.getStringExtra("zonfakuan");//支付总金额
+            TLog.logI(ordercode + "\n" + paymoney);
+
+        }
 
         if(ScreenSizeUtil.getScreenWidth(this)<=ScreenSizeUtil.getScreenHeight(this)) {
             RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) main_body_layout.getLayoutParams();
@@ -87,8 +92,12 @@ public class PayActivity extends BaseActivity<PayContract.Presenter> implements 
 
         mPresenter = new PayPresenter(this,this);
         mPresenter.start();
-
-        showQrCode("");
+        mPresenter.getPayType(ordercode,ordertype);//获取支付通道信息
+        if(ordertype==1){//违章，补款订单检测
+            mPresenter.checkPayment(ordercode,paymoney);
+        }else if(ordertype==3){//年检订单检测
+            mPresenter.annualOrderCheck(ordercode,paymoney);
+        }
 
         task=new TimerTask() {
             @Override
@@ -106,6 +115,7 @@ public class PayActivity extends BaseActivity<PayContract.Presenter> implements 
     @Override
     protected void onResume() {
         super.onResume();
+        showQrCode("");
             if(ordertype==3){//年检订单检测
 //                mPresenter.annualOrderCheck();
             }else{//违章订单检测

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -17,7 +18,9 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ccj.base.base.BaseActivity;
+import com.ccj.base.base.Constants;
 import com.ccj.base.utils.DialogCreator;
+import com.ccj.base.utils.NetUtils;
 import com.ccj.base.utils.SharedPreferenceUtil;
 import com.ccj.base.utils.TLog;
 import com.ccj.base.utils.router.RouterConstants;
@@ -50,11 +53,17 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     @BindViews({R.id.query_btn,R.id.annual_btn,R.id.order_btn})
     RoundTextView[] btns;
 
-    @BindView(R.id.login_btn)
-    Button login_btn;
+    @BindView(R.id.login_exit_layout)
+    LinearLayout login_exit_layout;
 
     @BindView(R.id.exit_btn)
     RoundTextView exit_btn;
+
+    @BindView(R.id.login_btn)
+    Button login_btn;
+
+    @BindView(R.id.head_portrait_iv)
+    ImageView head_portrait_iv;//用户头像
 
     @Autowired
     Boolean isLogin;
@@ -69,6 +78,8 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
         mPresenter = new MainPresenter(this);
         mPresenter.start();
 
+
+
         if(ScreenSizeUtil.getScreenWidth(this)<=ScreenSizeUtil.getScreenHeight(this)) {
             LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) fun_sv.getLayoutParams();
             linearParams.width = ScreenSizeUtil.getScreenWidth(this) / 3 * 2;        //
@@ -78,10 +89,13 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
             linearParams.width = ScreenSizeUtil.getScreenWidth(this)/3;        //
             fun_sv.setLayoutParams(linearParams);
 
-            RelativeLayout.LayoutParams linearParams2 = (RelativeLayout.LayoutParams) login_btn.getLayoutParams();
-            login_btn.setPadding(0,0,ScreenSizeUtil.getScreenWidth(this)/10,0);
+            RelativeLayout.LayoutParams linearParams2 = (RelativeLayout.LayoutParams) login_exit_layout.getLayoutParams();
+            login_exit_layout.setPadding(0,0,ScreenSizeUtil.getScreenWidth(this)/20,0);
         }
 
+        SharedPreferenceUtil.getInstance().setToken(Constants.token);
+        SharedPreferenceUtil.getInstance().setUsername("15088132079");
+        SharedPreferenceUtil.getInstance().setIsLogin(true);
 
     }
 
@@ -89,16 +103,18 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     protected void onResume() {
         super.onResume();
         phoneNum= SharedPreferenceUtil.getInstance().getUsername();
-        if(phoneNum==null||phoneNum.equals("")){
+        if(!SharedPreferenceUtil.getInstance().getIsLogin()){
             login_btn.setText("登  录");
+            head_portrait_iv.setImageResource(R.mipmap.user_login);
         }else {
             login_btn.setText(StringUtils.showPhoneNum(phoneNum));
+            head_portrait_iv.setImageResource(R.mipmap.header_icon);
         }
         TLog.logI("phoneNum"+phoneNum+"\n"+isLogin);
 
         if(isLogin!=null&&isLogin) {
             GuideHelper guideHelper = new GuideHelper(MainActivity.this);
-            GuideHelper.TipData tipData = new GuideHelper.TipData(R.drawable.tip3, login_btn);
+            GuideHelper.TipData tipData = new GuideHelper.TipData(R.drawable.tip3, login_exit_layout);
             guideHelper.addPage(tipData);
             guideHelper.show(false);
         }
@@ -108,23 +124,24 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
 
     }
 
-    @OnClick({R.id.login_btn, R.id.query_btn,R.id.annual_btn,R.id.order_btn,R.id.exit_btn})
+    @OnClick({R.id.login_exit_layout, R.id.query_btn,R.id.annual_btn,R.id.order_btn,R.id.exit_btn})
     public void btn_click(View view){
         switch (view.getId()){
-            case R.id.login_btn:
+            case R.id.login_exit_layout:
                 if(SharedPreferenceUtil.getInstance().getToken()==null||SharedPreferenceUtil.getInstance().getToken().equals("")) {//跳去登录
                     RouterUtils.navigation(RouterConstants.LOGIN_MOUDLE_ACTIVITY);
                 }else{//退出登录
-
+//                    RouterUtils.navigation(RouterConstants.LOGIN_MOUDLE_ACTIVITY);
+                    showExitDialog();
                 }
 //                RouterUtils.navigation(RouterConstants.QUERY_MOUDLE_ACTIVITY);
                 break;
 
             case R.id.query_btn:
-                if(SharedPreferenceUtil.getInstance().getToken()==null||SharedPreferenceUtil.getInstance().getToken().equals("")) {//跳去登录
-//                    RouterUtils.navigation(RouterConstants.LOGIN_MOUDLE_ACTIVITY);
+                if(SharedPreferenceUtil.getInstance().getToken()==null||SharedPreferenceUtil.getInstance().getToken().equals("")){//跳去登录
+                    RouterUtils.navigation(RouterConstants.LOGIN_MOUDLE_ACTIVITY);
 //                    RouterUtils.navigation(RouterConstants.PAY_SUCESS_ACTIVITY);
-                    RouterUtils.navigation(RouterConstants.PAY_FAIL_ACTIVITY);
+//                    RouterUtils.navigation(RouterConstants.PAY_FAIL_ACTIVITY);
                 }else {
                     RouterUtils.navigation(RouterConstants.ADDCAR_MOUDLE_ACTIVITY);
                 }
@@ -172,7 +189,13 @@ public class MainActivity extends BaseActivity<MainContract.Presenter> implement
     ExitDialog exitDialog;
     @Override
     public void showExitDialog() {
-        exitDialog=new ExitDialog(MainActivity.this,R.style.Dialog);
+        exitDialog=new ExitDialog(MainActivity.this, R.style.Dialog, new ExitDialog.ExitInterface() {
+            @Override
+            public void exit() {
+                login_btn.setText("登  录");
+                head_portrait_iv.setImageResource(R.mipmap.user_login);
+            }
+        });
         exitDialog.show();
         new Handler().postDelayed(new Runnable() {
             @Override

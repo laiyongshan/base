@@ -10,6 +10,7 @@ import com.yeohe.kiosk.utils.EncryptUtil;
 import com.yeohe.kiosk.utils.GsonUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.utils.Exceptions;
 
 import java.util.HashMap;
 
@@ -61,12 +62,12 @@ public class AnnualPresenter implements AnnualContract.Presenter {
             }
             @Override
             public void onResponse(String response, int id) {
-                if(GsonUtil.getStatusCode(response.toString())==0) {
-                    Annual annual = GsonUtil.GsonToBean(EncryptUtil.decryptJson(response, context), Annual.class);
-                    TLog.logI(EncryptUtil.decryptJson(response, context));
+                TLog.logI(EncryptUtil.decryptJson(response, context));
+                Annual annual = GsonUtil.GsonToBean(EncryptUtil.decryptJson(response, context), Annual.class);
+                if(annual.getCode()==0) {
                     view.showAdressAndPrice(annual);
                 }else{
-                    view.showError(GsonUtil.getMsg(response.toString()));
+                    view.showError(annual.getMsg()+"");
                 }
             }
 
@@ -95,12 +96,12 @@ public class AnnualPresenter implements AnnualContract.Presenter {
             @Override
             public void onResponse(String response, int id) {
                 TLog.logI(EncryptUtil.decryptJson(response,context));
-                if(GsonUtil.getStatusCode(response.toString())==0) {
-                    Annual.ResultBean resultBean = GsonUtil.GsonToBean(EncryptUtil.decryptJson(response, context), Annual.ResultBean.class);
-                    AppApplication.showLongToast(resultBean.getMsg().toString());
-                    view.showSucessDialog(resultBean.getData().getOrdercode()+"");
+                Annual.ResultBean resultBean = GsonUtil.GsonToBean(EncryptUtil.decryptJson(response, context), Annual.ResultBean.class);
+                AppApplication.showLongToast(resultBean.getMsg().toString());
+                if(resultBean.getStatus().equals("ok")) {
+                    view.showSucessDialog(resultBean.getData().getOrdercode() + "", resultBean.getData().getOrdercode());
                 }else{
-                    view.showError(GsonUtil.getMsg(response.toString()));
+                    view.showError(resultBean.getMsg()+"");
                 }
             }
         });

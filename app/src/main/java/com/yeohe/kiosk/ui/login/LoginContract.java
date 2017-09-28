@@ -5,6 +5,8 @@ import com.ccj.base.base.BasePresenter;
 import com.ccj.base.base.BaseView;
 import com.ccj.base.bean.User;
 
+import java.util.HashMap;
+
 /**
  * 登录关联接口类
  *
@@ -25,6 +27,7 @@ public interface LoginContract {
 
     interface Presenter extends BasePresenter {
         void login(String username, String password);
+        void getAuthCode(String phoneNum);
         void onDestroy();
     }
 

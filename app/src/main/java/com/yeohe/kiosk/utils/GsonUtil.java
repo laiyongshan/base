@@ -1,5 +1,6 @@
 package com.yeohe.kiosk.utils;
 
+import com.ccj.base.utils.TLog;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -127,17 +128,12 @@ public class GsonUtil {
     }
 
 
-    public static int getStatusCode(String respones) {
-        int code=-1;
-        try {
-            JSONObject obj=new JSONObject(respones);
-            code=obj.getInt("code");
-            return code;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    public static int getStatusCode(String respones) throws JSONException {
+        JSONObject obj = new JSONObject(respones);
+        int code = obj.getInt("code");
+        TLog.logI(code + "");
+        return  code;
 
-        return code;
     }
 
     public static String getMsg(String respones){
@@ -150,6 +146,7 @@ public class GsonUtil {
             e.printStackTrace();
         }
 
+        TLog.logI(msg+"");
         return msg;
     }
 
