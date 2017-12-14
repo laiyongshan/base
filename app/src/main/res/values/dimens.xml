@@ -32,5 +32,32 @@
     <dimen name="text_size26">26sp</dimen>
     <dimen name="text_size28">28sp</dimen>
     <dimen name="text_size30">30sp</dimen>
+	
+	
+	<dimen name="text_size_12">12sp</dimen><!--小字提示-->
+    <dimen name="text_size_14">14sp</dimen> <!-- 正文/按钮文字-->
+    <dimen name="text_size_16">16sp</dimen> <!--小标题-->
+    <dimen name="text_size_20">20sp</dimen> <!--Appbar文字-->
+    <dimen name="text_size_24">24sp</dimen> <!--大标题-->
+    <dimen name="text_size_34">34sp</dimen> <!--超大号文字-->
+    <dimen name="text_size_45">45sp</dimen> 
+    <dimen name="text_size_56">56sp</dimen> 
+    <dimen name="text_size_112">112sp</dimen> 
+
+
+    <dimen name="status_bar_height">24dp</dimen> <!--顶部状态栏高度-->
+    <dimen name="app_bar_height">56dp</dimen> <!--Appbar最小高度-->
+    <dimen name="bottom_navigation_bar_height">48dp</dimen> <!--底部导航栏高度-->
+    <dimen name="float_action_button_size1">56dp</dimen> <!--悬浮按钮尺寸-->
+    <dimen name="float_action_button_size2">40dp</dimen> <!--悬浮按钮尺寸-->
+    <dimen name="user_profile_size1">64dp</dimen> <!--用户头像尺寸-->
+    <dimen name="user_profile_size2">40dp</dimen> <!--用户头像尺寸-->
+    <dimen name="icon_size1">48dp</dimen> <!--小图标点击区域-->
+
+    <dimen name="card_padding">8dp</dimen>  <!---->
+    <dimen name="dividing_line_padding">8dp</dimen><!--分割线上下留白-->
+    <dimen name="large_element">16dp</dimen><!--大多元素的留白距离-->
+    <dimen name="around_screen_padding">16dp</dimen><!--屏幕左右对齐基线-->
+    <dimen name="text_left_padding">72dp</dimen> <!--文字左侧对齐基线-->
 
 </resources>
